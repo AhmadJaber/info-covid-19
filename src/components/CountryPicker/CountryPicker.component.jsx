@@ -12,6 +12,7 @@ const CountryPicker = ({ country, handleCountryChange }) => {
       const dataCountries = await fetchCountries();
       setCountries(dataCountries);
     };
+
     fetchedCountries();
   }, []);
 
@@ -19,7 +20,7 @@ const CountryPicker = ({ country, handleCountryChange }) => {
     <FormControl className={styles.formControl}>
       <NativeSelect
         onChange={(e) => handleCountryChange(e.target.value)}
-        defaultValue=''
+        value={country}
         onBlur={(e) => handleCountryChange(e.target.value)}
       >
         <option value=''>Global</option>

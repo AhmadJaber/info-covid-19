@@ -32,7 +32,7 @@ class App extends React.Component {
           handleCountryChange={this.handleCountryChange}
           country={country}
         />
-        <Chart />
+        <Chart country={country} data={data} />
       </div>
     );
   }

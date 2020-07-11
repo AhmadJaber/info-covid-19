@@ -33,12 +33,36 @@ export const fetchDailySummary = async () => {
   }
 };
 
-export const fetchCountries = async () => {
+export const fetchCountryInfo = async () => {
   try {
-    const {
-      data: { countries },
-    } = await axios.get(`${URL}/countries`);
-    return countries.map((country) => country.name);
+    const { data } = await axios.get(
+      'https://disease.sh/v3/covid-19/countries'
+    );
+    return data.map(
+      ({
+        country,
+        countryInfo,
+        cases,
+        todayCases,
+        deaths,
+        todayDeaths,
+        recovered,
+        critical,
+        casesPerOneMillion,
+        deathsPerOneMillion,
+      }) => ({
+        country,
+        countryFlag: countryInfo.flag,
+        cases,
+        todayCases,
+        deaths,
+        todayDeaths,
+        recovered,
+        casesPerOneMillion,
+        deathsPerOneMillion,
+        critical,
+      })
+    );
   } catch (error) {
     return error;
   }

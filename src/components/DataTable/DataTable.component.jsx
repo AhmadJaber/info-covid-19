@@ -5,21 +5,15 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Paper,
 } from '@material-ui/core';
 import { fetchCountryInfo } from '../../api';
 
+import DataTableHead from '../Tablehead/TableHead.component.jsx';
 import styles from './DataTable.module.css';
 
 const StyledTableCell = withStyles(() => ({
-  head: {
-    backgroundColor: '#fff',
-    color: '#212529',
-    fontSize: 14,
-    textAlign: 'center',
-  },
   body: {
     fontSize: 14,
     textAlign: 'center',
@@ -50,38 +44,7 @@ const DataTable = () => {
     <Paper variant='outlined'>
       <TableContainer>
         <Table className={styles.table} aria-label='customized table'>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell className={styles.tableCells}>#</StyledTableCell>
-              <StyledTableCell className={styles.tableCells}>
-                Country
-              </StyledTableCell>
-              <StyledTableCell className={styles.tableCells}>
-                Cases
-              </StyledTableCell>
-              <StyledTableCell className={styles.tableCells}>
-                Deaths
-              </StyledTableCell>
-              <StyledTableCell className={styles.tableCells}>
-                Critical
-              </StyledTableCell>
-              <StyledTableCell className={styles.tableCells}>
-                Recovered
-              </StyledTableCell>
-              <StyledTableCell className={styles.tableCells}>
-                Today&apos;s Cases
-              </StyledTableCell>
-              <StyledTableCell className={styles.tableCells}>
-                Today&apos;s Deaths
-              </StyledTableCell>
-              <StyledTableCell className={styles.tableCells}>
-                Cases Per 1M
-              </StyledTableCell>
-              <StyledTableCell className={styles.tableCells}>
-                Deaths Per 1M
-              </StyledTableCell>
-            </TableRow>
-          </TableHead>
+          <DataTableHead />
 
           <TableBody>
             {countryDataRows.map((row, index) => (

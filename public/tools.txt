@@ -1,4 +1,0 @@
-axios - handle api requests
-react-chartjs-2 - library for making charts
-react-countup - show animation when showing numbers
-classnames - conditionally joins classnames together

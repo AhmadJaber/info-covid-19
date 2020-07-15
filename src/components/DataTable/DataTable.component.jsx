@@ -1,35 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import {
   Table,
-  TableBody,
-  TableCell,
   TableContainer,
-  TableRow,
   Paper,
+  TablePagination,
 } from '@material-ui/core';
 import { fetchCountryInfo } from '../../api';
 
 import DataTableHead from '../Tablehead/TableHead.component.jsx';
+import DataTableBody from '../TableBody/TableBody.component.jsx';
 import styles from './DataTable.module.css';
-
-const StyledTableCell = withStyles(() => ({
-  body: {
-    fontSize: 14,
-    textAlign: 'center',
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:first-child': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
 
 const DataTable = () => {
   const [countryDataRows, setCountryDataRows] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchedCountryInfo = async () => {
@@ -40,54 +25,36 @@ const DataTable = () => {
     fetchedCountryInfo();
   }, []);
 
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   return (
     <Paper variant='outlined'>
       <TableContainer>
         <Table className={styles.table} aria-label='customized table'>
           <DataTableHead />
-
-          <TableBody>
-            {countryDataRows.map((row, index) => (
-              <StyledTableRow key={row.country}>
-                <StyledTableCell
-                  className={styles.tableCells}
-                  component='th'
-                  scope='row'
-                >
-                  {index + 1}
-                </StyledTableCell>
-                <StyledTableCell className={styles.tableCells}>
-                  {row.country}
-                </StyledTableCell>
-                <StyledTableCell className={styles.tableCells}>
-                  {row.cases}
-                </StyledTableCell>
-                <StyledTableCell className={styles.tableCells}>
-                  {row.deaths}
-                </StyledTableCell>
-                <StyledTableCell className={styles.tableCells}>
-                  {row.critical}
-                </StyledTableCell>
-                <StyledTableCell className={styles.tableCells}>
-                  {row.recovered}
-                </StyledTableCell>
-                <StyledTableCell className={styles.tableCells}>
-                  {row.todayCases}
-                </StyledTableCell>
-                <StyledTableCell className={styles.tableCells}>
-                  {row.todayDeaths}
-                </StyledTableCell>
-                <StyledTableCell className={styles.tableCells}>
-                  {row.casesPerOneMillion}
-                </StyledTableCell>
-                <StyledTableCell className={styles.tableCells}>
-                  {row.deathsPerOneMillion}
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
+          <DataTableBody
+            countryDataRows={countryDataRows}
+            rowsPerPage={rowsPerPage}
+            page={page}
+          />
         </Table>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 20]}
+        component='div'
+        count={countryDataRows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
     </Paper>
   );
 };

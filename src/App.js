@@ -1,7 +1,15 @@
 import React from 'react';
-import { Cards, Chart, DataTable } from './components';
+import { CardList, Chart, DataTable } from './components';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 import styles from './App.module.css';
 import { fetchData } from './api';
+
+const THEME = createMuiTheme({
+  typography: {
+    fontFamily: ['Work Sans', 'Roboto'],
+  },
+});
 
 class App extends React.Component {
   state = {
@@ -25,11 +33,15 @@ class App extends React.Component {
     const { data, country } = this.state;
 
     return (
-      <div className={styles.container}>
-        <Cards data={data} />
-        <DataTable />
-        <Chart country={country} data={data} />
-      </div>
+      <MuiThemeProvider theme={THEME}>
+        <div className={styles.paddingVertical}>
+          <div className={styles.container}>
+            <CardList data={data} />
+            <DataTable />
+            <Chart country={country} data={data} />
+          </div>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

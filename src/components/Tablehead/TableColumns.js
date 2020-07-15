@@ -37,14 +37,14 @@ export default [
   },
   {
     id: 'casesToday',
-    label: 'Today&apos;s Cases',
+    label: `Today's Cases`,
     minWidth: 170,
     align: 'center',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'deathsToday',
-    label: 'Today&apos;s Deaths',
+    label: `Today's Deaths`,
     minWidth: 170,
     align: 'center',
     format: (value) => value.toLocaleString('en-US'),

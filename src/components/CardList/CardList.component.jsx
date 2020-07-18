@@ -4,8 +4,10 @@ import { Grid } from '@material-ui/core';
 import styles from './Cards.module.css';
 import DataCard from '../Card/Card.component.jsx';
 
-const CardList = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
-  if (!confirmed) {
+const CardList = ({
+  data: { active, cases, deaths, recovered, lastUpdated },
+}) => {
+  if (!cases) {
     return <h1>Loading.....</h1>;
   }
 
@@ -13,22 +15,28 @@ const CardList = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
     <div className={styles.cardContainer}>
       <Grid container spacing={3} justify='center'>
         <DataCard
-          label='Infected'
-          cardFor={confirmed}
+          label='total cases'
+          cardFor={cases}
           cardClass={styles.infected}
-          lastUpdate={lastUpdate}
+          lastUpdated={lastUpdated}
         />
         <DataCard
-          label='Recovered'
-          cardFor={recovered}
-          cardClass={styles.recovered}
-          lastUpdate={lastUpdate}
-        />
-        <DataCard
-          label='Deaths'
+          label='total deaths'
           cardFor={deaths}
           cardClass={styles.deaths}
-          lastUpdate={lastUpdate}
+          lastUpdated={lastUpdated}
+        />
+        <DataCard
+          label='total recoveries'
+          cardFor={recovered}
+          cardClass={styles.recovered}
+          lastUpdated={lastUpdated}
+        />
+        <DataCard
+          label='active cases'
+          cardFor={active}
+          cardClass={styles.recovered}
+          lastUpdated={lastUpdated}
         />
       </Grid>
     </div>

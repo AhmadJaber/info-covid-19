@@ -2,15 +2,12 @@ import axios from 'axios';
 
 const URL = 'https://disease.sh/v3/covid-19/all';
 
-export const fetchData = async () => {
-  try {
-    const {
-      data: { cases, deaths, recovered, active, updated: lastUpdated },
-    } = await axios.get(URL);
-    return { cases, deaths, recovered, active, lastUpdated };
-  } catch (error) {
-    return error;
-  }
+export const fetchGlobalData = () => {
+  return axios.get(URL);
+};
+
+export const fetchGlobalDayBeforeData = () => {
+  return axios.get('https://disease.sh/v3/covid-19/historical/all?lastdays=1');
 };
 
 export const fetchDailySummary = async () => {

@@ -7,6 +7,9 @@ import Home from './Pages/Home/Home.component.jsx';
 const THEME = createMuiTheme({
   typography: {
     fontFamily: ['Work Sans', 'Roboto'],
+    h4: {
+      fontWeight: 700,
+    },
   },
 });
 

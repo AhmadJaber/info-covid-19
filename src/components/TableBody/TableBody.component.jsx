@@ -18,19 +18,27 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
+// TODO: Refractor code line 25
 const DataTableBody = ({ countryDataRows, page, rowsPerPage }) => {
   return (
     <TableBody>
       {countryDataRows.length !== 0
         ? countryDataRows
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((row, index) => (
+            .map((row) => (
               <StyledTableRow key={row.country}>
                 <StyledTableCell align='center' className={styles.tableCells}>
-                  {index + 1}
+                  {row.countrySerial}
                 </StyledTableCell>
                 <StyledTableCell align='left' className={styles.tableCells}>
-                  {row.country}
+                  <div className={styles.countryCell}>
+                    <img
+                      src={row.countryFlag}
+                      alt='flag'
+                      className={styles.flag}
+                    />
+                    {row.country}
+                  </div>
                 </StyledTableCell>
                 <StyledTableCell align='center' className={styles.tableCells}>
                   {row.cases.toLocaleString('en-US')}

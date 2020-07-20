@@ -30,18 +30,21 @@ export const fetchCountryInfo = async () => {
       'https://disease.sh/v3/covid-19/countries'
     );
     return data.map(
-      ({
-        country,
-        countryInfo,
-        cases,
-        todayCases,
-        deaths,
-        todayDeaths,
-        recovered,
-        critical,
-        casesPerOneMillion,
-        deathsPerOneMillion,
-      }) => ({
+      (
+        {
+          country,
+          countryInfo,
+          cases,
+          todayCases,
+          deaths,
+          todayDeaths,
+          recovered,
+          critical,
+          casesPerOneMillion,
+          deathsPerOneMillion,
+        },
+        index
+      ) => ({
         country,
         countryFlag: countryInfo.flag,
         cases,
@@ -52,6 +55,7 @@ export const fetchCountryInfo = async () => {
         casesPerOneMillion,
         deathsPerOneMillion,
         critical,
+        countrySerial: index + 1,
       })
     );
   } catch (error) {

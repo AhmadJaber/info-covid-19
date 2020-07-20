@@ -11,6 +11,7 @@ const StyledTableCell = withStyles(() => ({
     color: '#212529',
     fontSize: 14,
     textAlign: 'center',
+    fontWeight: 600,
   },
 }))(TableCell);
 

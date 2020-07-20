@@ -10,3 +10,14 @@
 .tableCells:last-child {
   border-bottom: 0;
 }
+
+.countryCell {
+  display: flex;
+  align-items: center;
+}
+
+.flag {
+  width: 1.5rem;
+  border-radius: 2px;
+  margin-right: 0.5em;
+}

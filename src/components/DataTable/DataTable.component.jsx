@@ -9,12 +9,14 @@ import { fetchCountryInfo } from '../../api';
 
 import DataTableHead from '../Tablehead/TableHead.component.jsx';
 import DataTableBody from '../TableBody/TableBody.component.jsx';
+import FilterField from '../FilterField/FilterField.component.jsx';
 import styles from './DataTable.module.css';
 
 const DataTable = () => {
   const [countryDataRows, setCountryDataRows] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     const fetchedCountryInfo = async () => {
@@ -34,28 +36,41 @@ const DataTable = () => {
     setPage(0);
   };
 
+  const handleFieldChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+  console.log(filter);
+  const filteredCountryDataRows = countryDataRows.filter((row) => {
+    return row.country.toLowerCase().includes(filter);
+  });
+
   return (
-    <Paper variant='outlined'>
-      <TableContainer>
-        <Table className={styles.table} aria-label='customized table'>
-          <DataTableHead />
-          <DataTableBody
-            countryDataRows={countryDataRows}
-            rowsPerPage={rowsPerPage}
-            page={page}
-          />
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 20]}
-        component='div'
-        count={countryDataRows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+    <div className='dataTableContainer'>
+      <FilterField handleChange={handleFieldChange} />
+
+      <Paper variant='outlined'>
+        <TableContainer>
+          <Table className={styles.table} aria-label='customized table'>
+            <DataTableHead />
+            <DataTableBody
+              countryDataRows={filteredCountryDataRows}
+              rowsPerPage={rowsPerPage}
+              page={page}
+            />
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 20]}
+          component='div'
+          count={filteredCountryDataRows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </div>
   );
 };
 

@@ -4,6 +4,11 @@ import cx from 'classnames';
 import CountUp from 'react-countup';
 
 import styles from '../CardList/Cards.module.css';
+import {
+  getPercentageChange,
+  getChipBackground,
+  numFormatter,
+} from './Card.utils';
 
 const DataCard = ({
   label,
@@ -12,22 +17,6 @@ const DataCard = ({
   lastUpdated,
   yesterdayData,
 }) => {
-  const getPercentageChange = (todayData, yesterdayData) => {
-    const decreasedValue = todayData - yesterdayData;
-    const percentage = Math.round((decreasedValue / yesterdayData) * 100);
-    let output = '';
-
-    if (percentage > 0) {
-      output = `${percentage}% Increase`;
-    } else if (percentage < 0) {
-      output = `${percentage}% Decrease`;
-    } else {
-      output = `${percentage}% Increase`;
-    }
-
-    return output;
-  };
-
   return (
     <Grid
       item
@@ -55,7 +44,21 @@ const DataCard = ({
           {new Date(lastUpdated).toDateString()}
         </Typography>
 
-        <Chip label={getPercentageChange(todayData, yesterdayData)} />
+        <div className={styles.badgeContainer}>
+          <Chip
+            label={getPercentageChange(todayData, yesterdayData)}
+            style={getChipBackground(todayData, yesterdayData, label)}
+            component='span'
+          />
+          <Typography
+            component='span'
+            color='textSecondary'
+            variant='subtitle1'
+            style={{ fontWeight: 500, marginLeft: '.5em' }}
+          >
+            {`from yesterday (${numFormatter(yesterdayData)})`}
+          </Typography>
+        </div>
       </CardContent>
     </Grid>
   );

@@ -1,10 +1,15 @@
 .cardContainer {
-  margin: 50px 0;
+  margin-bottom: 50px;
 }
 
 .card {
   margin: 1em !important;
   margin-bottom: 1.5em;
+}
+
+.badgeContainer {
+  display: flex;
+  align-items: baseline;
 }
 
 .infected {

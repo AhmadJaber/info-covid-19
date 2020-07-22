@@ -40,7 +40,6 @@ const DataTable = () => {
     setFilter(e.target.value);
   };
 
-  console.log(filter);
   const filteredCountryDataRows = countryDataRows.filter((row) => {
     return row.country.toLowerCase().includes(filter);
   });

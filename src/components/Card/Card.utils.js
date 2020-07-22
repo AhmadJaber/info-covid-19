@@ -1,4 +1,10 @@
 //TODO: refractor the code
+const colorPallete = {
+  success: '#4CAF50',
+  danger: '#e53935',
+  info: '#2196F3',
+};
+
 export const getPercentageChange = (todayData, yesterdayData) => {
   const decreasedValue = todayData - yesterdayData;
   const percentage = Math.round((decreasedValue / yesterdayData) * 100);
@@ -22,25 +28,25 @@ export const getChipBackground = (todayData, yesterdayData, label) => {
 
   if (percentage > 0 && label === 'total recoveries') {
     output = {
-      backgroundColor: '#1bb99a',
+      backgroundColor: colorPallete.success,
       color: '#fff',
       fontWeight: 600,
     };
   } else if (percentage > 0) {
     output = {
-      backgroundColor: '#d9534f',
+      backgroundColor: colorPallete.danger,
       color: '#fff',
       fontWeight: 600,
     };
   } else if (percentage < 0) {
     output = {
-      backgroundColor: '#1bb99a',
+      backgroundColor: colorPallete.success,
       color: '#fff',
       fontWeight: 600,
     };
   } else {
     output = {
-      backgroundColor: '#1976d2',
+      backgroundColor: colorPallete.info,
       color: '#fff',
       fontWeight: 600,
     };

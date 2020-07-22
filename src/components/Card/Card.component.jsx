@@ -1,5 +1,13 @@
 import React from 'react';
-import { Grid, Card, CardContent, Typography, Chip } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import {
+  Grid,
+  CardContent,
+  Typography,
+  Chip,
+  Paper,
+  Card,
+} from '@material-ui/core';
 import cx from 'classnames';
 import CountUp from 'react-countup';
 
@@ -10,58 +18,71 @@ import {
   numFormatter,
 } from './Card.utils';
 
+const style = {
+  mainData: {
+    marginTop: '.25em',
+    marginBottom: '.125em',
+    fontSize: '2.5rem',
+  },
+  colorSuccess: {
+    color: '#4CAF50',
+  },
+};
+
 const DataCard = ({
   label,
   todayData,
   cardClass,
   lastUpdated,
   yesterdayData,
+  classes,
 }) => {
   return (
-    <Grid
-      item
-      xs={12}
-      md={5}
-      component={Card}
-      className={cx(styles.card, cardClass)}
-    >
-      <CardContent>
-        <Typography
-          component='h6'
-          variant='subtitle2'
-          color='textSecondary'
-          className={styles.cardTitle}
-          gutterBottom
-        >
-          {label.toUpperCase()}
-        </Typography>
-        <Typography variant='h4' component='h3' className={styles.cardFocus}>
-          <CountUp start={0} end={todayData} duration={2.75} separator=','>
-            {todayData}
-          </CountUp>
-        </Typography>
-        <Typography color='textSecondary'>
-          {new Date(lastUpdated).toDateString()}
-        </Typography>
-
-        <div className={styles.badgeContainer}>
-          <Chip
-            label={getPercentageChange(todayData, yesterdayData)}
-            style={getChipBackground(todayData, yesterdayData, label)}
-            component='span'
-          />
+    <Grid item xs={12} md={6} className={cx(styles.card, cardClass)}>
+      <Paper elevation={3} component={Card} variant='outlined'>
+        <CardContent>
           <Typography
-            component='span'
+            component='h6'
+            variant='subtitle2'
             color='textSecondary'
-            variant='subtitle1'
-            style={{ fontWeight: 500, marginLeft: '.5em' }}
+            gutterBottom
           >
-            {`from yesterday (${numFormatter(yesterdayData)})`}
+            {label.toUpperCase()}
           </Typography>
-        </div>
-      </CardContent>
+          <Typography
+            variant='h4'
+            component='h3'
+            className={`${classes.mainData} ${
+              label === 'total recoveries' ? classes.colorSuccess : ''
+            }`}
+          >
+            <CountUp start={0} end={todayData} duration={2.75} separator=','>
+              {todayData}
+            </CountUp>
+          </Typography>
+          <Typography color='textSecondary'>
+            {new Date(lastUpdated).toDateString()}
+          </Typography>
+
+          <div className={styles.badgeContainer}>
+            <Chip
+              label={getPercentageChange(todayData, yesterdayData)}
+              style={getChipBackground(todayData, yesterdayData, label)}
+              component='span'
+            />
+            <Typography
+              component='span'
+              color='textSecondary'
+              variant='subtitle1'
+              style={{ fontWeight: 500, marginLeft: '.5em' }}
+            >
+              {`from yesterday (${numFormatter(yesterdayData)})`}
+            </Typography>
+          </div>
+        </CardContent>
+      </Paper>
     </Grid>
   );
 };
 
-export default DataCard;
+export default withStyles(style)(DataCard);

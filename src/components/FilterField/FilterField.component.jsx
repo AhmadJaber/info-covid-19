@@ -5,11 +5,13 @@ import {
   createMuiTheme,
 } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { teal } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
-    primary: teal,
+    primary: {
+      main: blue[700],
+    },
   },
 });
 const useStyles = makeStyles((theme) => ({

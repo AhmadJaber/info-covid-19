@@ -7,6 +7,7 @@ import styles from '../DataTable/DataTable.module.css';
 const StyledTableCell = withStyles(() => ({
   body: {
     fontSize: 14,
+    fontWeight: 500,
   },
 }))(TableCell);
 

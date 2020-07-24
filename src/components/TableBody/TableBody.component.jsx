@@ -1,8 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { TableBody, TableCell, TableRow } from '@material-ui/core';
+import { isCasesDeathsGreaterThanZero } from '../DataTable/DataTable.utils';
 
 import styles from '../DataTable/DataTable.module.css';
+import GlobalCell from '../GlobalCell/GlobalCell.component.jsx';
 
 const StyledTableCell = withStyles(() => ({
   body: {
@@ -19,24 +21,46 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
+const style = {
+  countryCell: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  flag: {
+    width: '1.5rem',
+    borderRadius: '2px',
+    marginRight: '0.5em',
+  },
+  todayCasesStyle: {
+    backgroundColor: '#ffeeaa',
+    fontWeight: 600,
+  },
+  todayDeathsStyle: {
+    backgroundColor: '#e53935',
+    color: '#fff',
+    fontWeight: 600,
+  },
+};
+
 // TODO: Refractor code line 25
-const DataTableBody = ({ countryDataRows, page, rowsPerPage }) => {
+const DataTableBody = ({ countryDataRows, page, rowsPerPage, classes }) => {
   return (
     <TableBody>
+      <GlobalCell />
       {countryDataRows.length !== 0
         ? countryDataRows
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row) => (
               <StyledTableRow key={row.country}>
                 <StyledTableCell align='center' className={styles.tableCells}>
-                  {row.countrySerial}
+                  {row.countryRank}
                 </StyledTableCell>
                 <StyledTableCell align='left' className={styles.tableCells}>
-                  <div className={styles.countryCell}>
+                  <div className={classes.countryCell}>
                     <img
                       src={row.countryFlag}
                       alt='flag'
-                      className={styles.flag}
+                      className={classes.flag}
                     />
                     {row.country}
                   </div>
@@ -53,10 +77,22 @@ const DataTableBody = ({ countryDataRows, page, rowsPerPage }) => {
                 <StyledTableCell align='center' className={styles.tableCells}>
                   {row.recovered.toLocaleString('en-US')}
                 </StyledTableCell>
-                <StyledTableCell align='center' className={styles.tableCells}>
+                <StyledTableCell
+                  align='center'
+                  className={`${styles.tableCells} ${
+                    row.todayCases > 0 ? classes.todayCasesStyle : ''
+                  }`}
+                >
+                  {isCasesDeathsGreaterThanZero(row.todayCases) ? '+' : ''}
                   {row.todayCases.toLocaleString('en-US')}
                 </StyledTableCell>
-                <StyledTableCell align='center' className={styles.tableCells}>
+                <StyledTableCell
+                  align='center'
+                  className={`${styles.tableCells} ${
+                    row.todayDeaths > 0 ? classes.todayDeathsStyle : ''
+                  }`}
+                >
+                  {isCasesDeathsGreaterThanZero(row.todayDeaths) ? '+' : ''}
                   {row.todayDeaths.toLocaleString('en-US')}
                 </StyledTableCell>
                 <StyledTableCell align='center' className={styles.tableCells}>
@@ -72,4 +108,4 @@ const DataTableBody = ({ countryDataRows, page, rowsPerPage }) => {
   );
 };
 
-export default DataTableBody;
+export default withStyles(style)(DataTableBody);

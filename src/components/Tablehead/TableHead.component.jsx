@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { TableCell, TableHead, TableRow } from '@material-ui/core';
+import { TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
 
 import columns from './TableColumns';
 import styles from '../DataTable/DataTable.module.css';
@@ -17,7 +17,7 @@ const StyledTableCell = withStyles(() => ({
 
 const DataTableHead = () => {
   return (
-    <TableHead>
+    <Paper component={TableHead}>
       <TableRow>
         {columns.map((column) => (
           <StyledTableCell className={styles.tableCells} key={column.id}>
@@ -25,7 +25,7 @@ const DataTableHead = () => {
           </StyledTableCell>
         ))}
       </TableRow>
-    </TableHead>
+    </Paper>
   );
 };
 

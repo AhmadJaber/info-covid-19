@@ -1,7 +1,8 @@
 import React from 'react';
-
 import { fetchGlobalData, fetchGlobalDayBeforeData } from '../../api';
-import { CardList, DataTable } from '../../components';
+import { CardList, DataTable, Header } from '../../components';
+
+import HomeContext from '../../context/HomeContext';
 
 class Home extends React.Component {
   constructor(props) {
@@ -21,7 +22,18 @@ class Home extends React.Component {
     ]);
 
     const {
-      data: { active, cases, deaths, recovered, updated: lastUpdated },
+      data: {
+        active,
+        cases,
+        deaths,
+        recovered,
+        updated: lastUpdated,
+        todayCases,
+        todayDeaths,
+        casesPerOneMillion,
+        deathsPerOneMillion,
+        critical,
+      },
     } = firstResponse;
     const {
       data: {
@@ -32,7 +44,18 @@ class Home extends React.Component {
     } = secondResponse;
 
     this.setState({
-      globalData: { active, cases, deaths, recovered, lastUpdated },
+      globalData: {
+        active,
+        cases,
+        deaths,
+        recovered,
+        lastUpdated,
+        todayCases,
+        todayDeaths,
+        casesPerOneMillion,
+        deathsPerOneMillion,
+        critical,
+      },
       globalDayBeforeData: [
         dayBeforeCases,
         dayBeforeDeaths,
@@ -52,10 +75,15 @@ class Home extends React.Component {
     const { globalData, globalDayBeforeData } = this.state;
 
     return (
-      <div className='homepage'>
-        <CardList data={globalData} dayBeforeData={globalDayBeforeData} />
-        <DataTable />
-      </div>
+      <HomeContext.Provider
+        value={{ globalContextData: this.state.globalData }}
+      >
+        <div className='homepage'>
+          <Header />
+          <CardList data={globalData} dayBeforeData={globalDayBeforeData} />
+          <DataTable />
+        </div>
+      </HomeContext.Provider>
     );
   }
 }

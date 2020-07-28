@@ -1,6 +1,6 @@
 import React from 'react';
 import { fetchGlobalData, fetchGlobalDayBeforeData } from '../../api';
-import { CardList, DataTable, Header } from '../../components';
+import { CardList, DataTable, Header, Chart } from '../../components';
 
 import HomeContext from '../../context/HomeContext';
 
@@ -82,6 +82,7 @@ class Home extends React.Component {
           <Header />
           <CardList data={globalData} dayBeforeData={globalDayBeforeData} />
           <DataTable />
+          <Chart />
         </div>
       </HomeContext.Provider>
     );

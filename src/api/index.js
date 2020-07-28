@@ -11,14 +11,14 @@ export const fetchGlobalDayBeforeData = () => {
 };
 
 export const fetchDailySummary = async () => {
-  try {
-    const { data } = await axios.get(`${URL}/daily`);
+  let globalURL = 'https://disease.sh/v3/covid-19/historical/all?lastdays=all';
 
-    return data.map(({ confirmed, deaths, reportDate: date }) => ({
-      confirmed: confirmed.total,
-      deaths: deaths.total,
-      date,
-    }));
+  try {
+    const {
+      data: { cases, deaths },
+    } = await axios.get(globalURL);
+
+    return { cases, deaths };
   } catch (error) {
     return error;
   }

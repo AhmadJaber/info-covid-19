@@ -27,6 +27,9 @@ const style = {
   colorSuccess: {
     color: '#4CAF50',
   },
+  cardGrid: {
+    padding: '1em !important',
+  },
 };
 
 const DataCard = ({
@@ -38,7 +41,7 @@ const DataCard = ({
   classes,
 }) => {
   return (
-    <Grid item xs={12} md={6} className={cx(styles.card, cardClass)}>
+    <Grid item xs={12} md={6} className={cx(classes.cardGrid, cardClass)}>
       <Paper elevation={3} component={Card} variant='outlined'>
         <CardContent>
           <Typography

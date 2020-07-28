@@ -30,11 +30,11 @@
     "@svgr/parcel-plugin-svgr": "^5.4.0",
     "autoprefixer": "^9.8.5",
     "axios": "^0.19.2",
-    "chart.js": "^2.9.3",
     "classnames": "^2.2.6",
+    "highcharts": "^8.1.2",
+    "highcharts-react-official": "^3.0.0",
     "postcss-modules": "^3.2.0",
     "react": "^16.13.1",
-    "react-chartjs-2": "^2.9.0",
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1"
   },

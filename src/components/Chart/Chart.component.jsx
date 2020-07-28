@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
-import { fetchDailySummary } from '../../api';
-import { Line, Bar } from 'react-chartjs-2';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
-import styles from './Chart.module.css';
+import { fetchDailySummary } from '../../api';
+import { numFormatter } from '../Card/Card.utils';
 
 const useStyles = makeStyles({
   wrapper: {
@@ -57,68 +58,24 @@ const Chart = () => {
     fetchedDailySummary();
   }, []);
 
-  /*
-  const barChart = confirmed ? (
-    <Bar
-      data={{
-        labels: ['Infected', 'Recovered', 'Deaths'],
-        datasets: [
-          {
-            label: 'People',
-            backgroundColor: [
-              'rgba(0, 0, 255, 0.5)',
-              'rgba(0, 255, 0, 0.5)',
-              'rgba(255, 0, 0, 0.5)',
-            ],
-            data: [confirmed.value, recovered.value, deaths.value],
-          },
-        ],
-      }}
-      options={{
-        legend: { display: false },
-        title: { display: true, text: `Current state in ${country}` },
-      }}
-    />
-  ) : null;
-*/
-  const caseslineChart =
-    Object.keys(cases).length !== 0 ? (
-      <Line
-        data={{
-          labels: Object.entries(cases).map(([key]) => key),
-          datasets: [
-            {
-              label: 'Infected',
-              data: Object.entries(cases).map(([, val]) => val),
-              backgroundColor: 'rgba(54, 162, 235, 0.4)',
-              pointBackgrondColor: 'rgba(54, 162, 235, 1)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 1,
-            },
-          ],
-        }}
-        options={{
-          legend: {
-            display: false,
-          },
-          scales: {
-            xAxes: [
-              {
-                gridLines: {
-                  color: 'rgba(0, 0, 0, 0)',
-                },
-              },
-            ],
-          },
-        }}
-      />
-    ) : null;
+  const options = {
+    title: {
+      text: 'My chart',
+    },
+    series: [
+      {
+        data: [1, 2, 3],
+      },
+    ],
+  };
 
   return (
     <div className={classes.wrapper}>
       <Paper>
         <div className={classes.chartWrapper} component={Paper}>
-          <div className={classes.chartContainer}>{caseslineChart}</div>
+          <div className={classes.chartContainer}>
+            <HighchartsReact highcharts={Highcharts} options={options} />
+          </div>
         </div>
       </Paper>
     </div>

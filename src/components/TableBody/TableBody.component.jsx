@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { TableBody, TableCell, TableRow } from '@material-ui/core';
-import { isCasesDeathsGreaterThanZero } from '../DataTable/DataTable.utils';
+import { isCasesDeathsGreaterThanZero } from '../../utils/DataTable';
 
 import styles from '../DataTable/DataTable.module.css';
 import GlobalCell from '../GlobalCell/GlobalCell.component.jsx';

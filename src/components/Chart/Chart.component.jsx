@@ -5,24 +5,27 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 import { fetchDailySummary } from '../../api';
-import { numFormatter } from '../Card/Card.utils';
+import { numFormatter } from '../../utils/Card';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
     padding: '.75em',
     paddingTop: '1.125em',
   },
   chartWrapper: {
-    padding: '2em',
+    padding: '4em',
     margin: 0,
     paddingTop: '.5em',
-    minHeight: '500px',
+    [theme.breakpoints.down('sm')]: {
+      padding: '2em',
+      paddingTop: '.5em',
+    },
   },
   chartContainer: {
     position: 'relative',
     margin: 'auto',
   },
-});
+}));
 
 const Chart = () => {
   const classes = useStyles();
@@ -59,14 +62,32 @@ const Chart = () => {
   }, []);
 
   const options = {
+    chart: {
+      type: 'line',
+    },
     title: {
-      text: 'My chart',
+      text: undefined,
+    },
+    xAxis: {
+      categories: Object.entries(cases).map(([key]) => {
+        const event = new Date(key);
+        const options = { month: 'short', day: 'numeric' };
+        return event.toLocaleDateString('en-US', options);
+      }),
     },
     series: [
       {
-        data: [1, 2, 3],
+        name: 'Cases',
+        color: '#33CCFF',
+        lineWidth: 5,
+        data: Object.entries(cases).map(([, val]) => val),
       },
     ],
+    yAxis: {
+      title: {
+        text: 'Total Coronavirus Cases',
+      },
+    },
   };
 
   return (

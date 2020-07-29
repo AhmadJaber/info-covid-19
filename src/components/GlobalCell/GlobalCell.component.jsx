@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { TableCell, TableRow } from '@material-ui/core';
 
 import HomeContext from '../../context/HomeContext';
-import { isCasesDeathsGreaterThanZero } from '../DataTable/DataTable.utils';
+import { isCasesDeathsGreaterThanZero } from '../../utils/DataTable';
 import styles from '../DataTable/DataTable.module.css';
 
 const StyledTableCell = withStyles(() => ({

@@ -16,7 +16,7 @@ import {
   getPercentageChange,
   getChipBackground,
   numFormatter,
-} from './Card.utils';
+} from '../../utils/Card';
 
 const style = {
   mainData: {

@@ -44,6 +44,7 @@ export const fetchCountryInfo = async () => {
       }) => ({
         country,
         countryFlag: countryInfo.flag,
+        countryCode: countryInfo.iso2,
         cases,
         todayCases,
         deaths,

@@ -3,13 +3,14 @@ import { Grid } from '@material-ui/core';
 
 import styles from './Cards.module.css';
 import DataCard from '../Card/Card.component.jsx';
+import Skeleton from '../Skeleton/Skeleton.component.jsx';
 
 const CardList = ({
   data: { active, cases, deaths, recovered, lastUpdated },
   dayBeforeData,
 }) => {
   if (!cases && dayBeforeData.length === 0) {
-    return <h1>Loading.....</h1>;
+    return <Skeleton />;
   }
 
   const yesterday = dayBeforeData.reduce(

@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-const LineChart = ({ casesOrDeaths }) => {
+const LineChart = ({ casesOrDeaths, name }) => {
   const classes = useStyles();
 
   const options = {
@@ -29,7 +29,7 @@ const LineChart = ({ casesOrDeaths }) => {
     },
     series: [
       {
-        name: 'Cases',
+        name: name,
         color: '#33CCFF',
         lineWidth: 5,
         data: Object.entries(casesOrDeaths).map(([, val]) => val),

@@ -1,4 +1,4 @@
-export function countryToFlag(isoCode) {
+export default function countryToFlag(isoCode) {
   return typeof String.fromCodePoint !== 'undefined'
     ? isoCode
         .toUpperCase()

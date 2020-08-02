@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ColumnChart = ({ casesOrDeaths, daily, sevenDayMovingAverage }) => {
+const ColumnChart = ({ casesOrDeaths, daily, sevenDayMovingAverage, name }) => {
   const classes = useStyles();
 
   const options = {
@@ -34,7 +34,7 @@ const ColumnChart = ({ casesOrDeaths, daily, sevenDayMovingAverage }) => {
     },
     series: [
       {
-        name: 'Daily Cases',
+        name: name,
         color: '#999',
         lineWidth: 4,
         showCheckbox: false,

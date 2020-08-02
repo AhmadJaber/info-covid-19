@@ -4,6 +4,5 @@ export const isCasesDeathsGreaterThanZero = (data) => {
   } else if (data > 0) {
     return true;
   }
-  console.log('ran');
   return false;
 };

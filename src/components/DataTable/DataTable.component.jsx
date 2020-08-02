@@ -5,6 +5,7 @@ import {
   TableContainer,
   Paper,
   TablePagination,
+  Typography,
 } from '@material-ui/core';
 import { fetchCountryInfo } from '../../api';
 
@@ -12,10 +13,28 @@ import DataTableHead from '../Tablehead/TableHead.component.jsx';
 import DataTableBody from '../TableBody/TableBody.component.jsx';
 import FilterField from '../FilterField/FilterField.component.jsx';
 import styles from './DataTable.module.css';
+import TableLogo from '../../assets/countrydata.svg';
 
 const useStyles = makeStyles({
   root: {
     width: '100%',
+  },
+  wrapper: {
+    padding: '.75em',
+    paddingTop: '1.125em',
+    paddingBottom: '1.125em',
+  },
+  headerMain: {
+    margin: '1.625em 0 .625em',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  logo: {
+    marginRight: '.6em',
+  },
+  title: {
+    fontSize: '2rem',
+    fontWeight: 600,
   },
 });
 
@@ -59,7 +78,16 @@ const DataTable = () => {
   });
 
   return (
-    <div className='dataTableContainer'>
+    <div className={classes.wrapper}>
+      <div className={classes.headerMain}>
+        <div>
+          <TableLogo className={classes.logo} />
+        </div>
+        <Typography component='h1' className={classes.title}>
+          Country Breakdown
+        </Typography>
+      </div>
+
       <FilterField handleChange={handleFieldChange} />
 
       <Paper variant='outlined' className={classes.root}>

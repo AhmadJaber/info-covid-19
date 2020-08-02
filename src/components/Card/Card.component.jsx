@@ -9,7 +9,6 @@ import {
   Card,
 } from '@material-ui/core';
 import cx from 'classnames';
-import CountUp from 'react-countup';
 
 import styles from '../CardList/Cards.module.css';
 import {
@@ -59,9 +58,7 @@ const DataCard = ({
               label === 'total recoveries' ? classes.colorSuccess : ''
             }`}
           >
-            <CountUp start={0} end={todayData} duration={2.75} separator=','>
-              {todayData}
-            </CountUp>
+            {todayData.toLocaleString()}
           </Typography>
           <Typography color='textSecondary'>
             {new Date(lastUpdated).toDateString()}

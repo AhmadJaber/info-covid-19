@@ -3,10 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 import { fetchDailySummary } from '../../api';
 
+import { chartHooksData } from '../../utils/ChartDataStructure';
 import LineChart from '../LineChart/LineChart.component.jsx';
 import ColumnChart from '../ColumnChart/ColumnChart.component.jsx';
 import CountryField from '../CountryField/CountryField.component.jsx';
-import { SMA } from '../../utils/MovingAverage';
+import Skeleton from '../Skeleton/Skeleton.component.jsx';
 import CasesLogo from '../../assets/crown.svg';
 import DeathsLogo from '../../assets/funeral.svg';
 
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     padding: '.75em',
     paddingTop: '1.125em',
+    paddingBottom: '1.125em',
   },
   chartWrapper: {
     padding: '4em',
@@ -67,26 +69,15 @@ const Chart = () => {
 
   useEffect(() => {
     const fetchedDailySummary = async () => {
-      const { cases, deaths } = await fetchDailySummary();
+      const { data } = await fetchDailySummary();
+      const { cases, deaths } = data;
       setCases(cases);
       setDeaths(deaths);
 
-      const casesArr = Object.entries(cases).map(([, value]) => value);
-      const deathsArr = Object.entries(deaths).map(([, value]) => value);
-      const dCases = casesArr.reduce((accm, amount, index) => {
-        return index === 0
-          ? [...accm, 0]
-          : [...accm, amount - casesArr[index - 1]];
-      }, []);
-      const dDeaths = deathsArr.reduce((accm, amount, index) => {
-        return index === 0
-          ? [...accm, 0]
-          : [...accm, amount - deathsArr[index - 1]];
-      }, []);
-
-      const dCasesSMA = SMA(dCases, 7);
-      const dDeathsSMA = SMA(dDeaths, 7);
-
+      const { dCases, dDeaths, dCasesSMA, dDeathsSMA } = chartHooksData(
+        cases,
+        deaths
+      );
       setDailyCases(dCases);
       setDailyDeaths(dDeaths);
       setSevenDayMovingAverage({ dCasesSMA, dDeathsSMA });
@@ -95,6 +86,24 @@ const Chart = () => {
     fetchedDailySummary();
   }, []);
 
+  const handleCountryChange = async (country) => {
+    setCases({});
+
+    const { data } = await fetchDailySummary(country);
+    const dataLogic = country ? data.timeline : data;
+    const { cases, deaths } = dataLogic;
+
+    setCases(cases);
+    setDeaths(deaths);
+
+    const { dCases, dDeaths, dCasesSMA, dDeathsSMA } = chartHooksData(
+      cases,
+      deaths
+    );
+    setDailyCases(dCases);
+    setDailyDeaths(dDeaths);
+    setSevenDayMovingAverage({ dCasesSMA, dDeathsSMA });
+  };
   return (
     <React.Fragment>
       <div className={classes.wrapper}>
@@ -118,25 +127,35 @@ const Chart = () => {
                 </Typography>
               </div>
 
-              <CountryField id='countryCases' />
+              <CountryField
+                id='countryCharts'
+                handleCountryChange={handleCountryChange}
+              />
             </div>
 
-            <LineChart casesOrDeaths={cases} />
+            {Object.keys(cases).length !== 0 ? (
+              <React.Fragment>
+                <LineChart casesOrDeaths={cases} name='Cases' />
 
-            <Typography
-              component='h4'
-              className={`${classes.subTitle} ${classes.my}`}
-            >
-              Daily New Cases{' '}
-              <Typography component='span' color='textSecondary'>
-                (Per Day)
-              </Typography>
-            </Typography>
-            <ColumnChart
-              casesOrDeaths={cases}
-              daily={dailyCases}
-              sevenDayMovingAverage={sevenDayMovingAverage.dCasesSMA}
-            />
+                <Typography
+                  component='h4'
+                  className={`${classes.subTitle} ${classes.my}`}
+                >
+                  Daily New Cases{' '}
+                  <Typography component='span' color='textSecondary'>
+                    (Per Day)
+                  </Typography>
+                </Typography>
+                <ColumnChart
+                  name='Daily Cases'
+                  casesOrDeaths={cases}
+                  daily={dailyCases}
+                  sevenDayMovingAverage={sevenDayMovingAverage.dCasesSMA}
+                />
+              </React.Fragment>
+            ) : (
+              <Skeleton />
+            )}
           </div>
         </Paper>
       </div>
@@ -165,27 +184,32 @@ const Chart = () => {
                   </Typography>
                 </Typography>
               </div>
-
-              <CountryField id='countryDeaths' />
             </div>
 
-            <LineChart casesOrDeaths={deaths} />
+            {Object.keys(cases).length !== 0 ? (
+              <React.Fragment>
+                <LineChart casesOrDeaths={deaths} name='Deaths' />
 
-            <Typography
-              component='h4'
-              className={`${classes.subTitle} ${classes.my}`}
-              style={{ textDecorationColor: '#e53935' }}
-            >
-              Daily New Deaths{' '}
-              <Typography component='span' color='textSecondary'>
-                (Per Day)
-              </Typography>
-            </Typography>
-            <ColumnChart
-              casesOrDeaths={deaths}
-              daily={dailyDeaths}
-              sevenDayMovingAverage={sevenDayMovingAverage.dDeathsSMA}
-            />
+                <Typography
+                  component='h4'
+                  className={`${classes.subTitle} ${classes.my}`}
+                  style={{ textDecorationColor: '#e53935' }}
+                >
+                  Daily New Deaths{' '}
+                  <Typography component='span' color='textSecondary'>
+                    (Per Day)
+                  </Typography>
+                </Typography>
+                <ColumnChart
+                  name='Daily Deaths'
+                  casesOrDeaths={deaths}
+                  daily={dailyDeaths}
+                  sevenDayMovingAverage={sevenDayMovingAverage.dDeathsSMA}
+                />
+              </React.Fragment>
+            ) : (
+              <Skeleton />
+            )}
           </div>
         </Paper>
       </div>

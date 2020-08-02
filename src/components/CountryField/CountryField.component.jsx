@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CountryField = ({ id }) => {
+const CountryField = ({ id, handleCountryChange }) => {
   const classes = useStyles();
   const [countries, setCountries] = useState([]);
 
@@ -40,12 +40,17 @@ const CountryField = ({ id }) => {
     fetchData();
   }, []);
 
+  const handleChange = (event, value) => {
+    handleCountryChange(value);
+  };
+
   return (
     <React.Fragment>
       {countries.length !== 0 ? (
         <Autocomplete
           id={id}
           style={{ width: 200 }}
+          onChange={handleChange}
           options={countries}
           classes={{
             option: classes.option,

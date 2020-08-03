@@ -8,6 +8,7 @@ import LineChart from '../LineChart/LineChart.component.jsx';
 import ColumnChart from '../ColumnChart/ColumnChart.component.jsx';
 import CountryField from '../CountryField/CountryField.component.jsx';
 import Skeleton from '../Skeleton/Skeleton.component.jsx';
+import Scroller from '../Scroller/Scroller.component.jsx';
 import CasesLogo from '../../assets/crown.svg';
 import DeathsLogo from '../../assets/funeral.svg';
 
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2em',
     marginTop: '.5em',
     textDecoration: 'underline',
-    textDecorationColor: '#3f51b5',
+    textDecorationColor: '#2196F3',
   },
   my: {
     marginTop: '2rem',
@@ -211,6 +212,8 @@ const Chart = () => {
               <Skeleton />
             )}
           </div>
+
+          <Scroller />
         </Paper>
       </div>
     </React.Fragment>

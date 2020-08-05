@@ -7,6 +7,7 @@ import Logo from '../../assets/coronavirus.svg';
 const useStyles = makeStyles({
   headerContainer: {
     padding: '1em',
+    paddingTop: 0,
   },
   headerMain: {
     display: 'flex',

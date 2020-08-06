@@ -5,6 +5,11 @@ import styles from './Cards.module.css';
 import DataCard from '../Card/Card.component.jsx';
 import Skeleton from '../Skeleton/Skeleton.component.jsx';
 
+import CasesLogo from '../../assets/casesv2.svg';
+import DeathsLogo from '../../assets/deathv2.svg';
+import ReacoverLogo from '../../assets/recoverv2.svg';
+import ActiveLogo from '../../assets/coronav2.svg';
+
 const CardList = ({
   data: { active, cases, deaths, recovered, lastUpdated },
   dayBeforeData,

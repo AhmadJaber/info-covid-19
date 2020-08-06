@@ -9,8 +9,8 @@ import ColumnChart from '../ColumnChart/ColumnChart.component.jsx';
 import CountryField from '../CountryField/CountryField.component.jsx';
 import Skeleton from '../Skeleton/Skeleton.component.jsx';
 import Scroller from '../Scroller/Scroller.component.jsx';
-import CasesLogo from '../../assets/crown.svg';
-import DeathsLogo from '../../assets/funeral.svg';
+import CasesLogo from '../../assets/coronav2.svg';
+import DeathsLogo from '../../assets/deathv2.svg';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    fontSize: '2rem',
+    fontSize: '1.75rem',
     fontWeight: 600,
   },
   flex: {
@@ -43,7 +43,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
   },
   logo: {
-    marginRight: '.6em',
+    marginRight: '.3em',
+    height: '2.25em',
+    width: '2.25em',
   },
   subTitle: {
     fontSize: '1.25rem',
@@ -56,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
   my: {
     marginTop: '2rem',
     marginBottom: '2rem',
+  },
+  logoWrapper: {
+    display: 'inline-flex',
   },
 }));
 
@@ -113,7 +118,7 @@ const Chart = () => {
             <div className={classes.flex}>
               <div className={classes.header}>
                 <div className={classes.headerMain}>
-                  <div>
+                  <div className={classes.logoWrapper}>
                     <CasesLogo className={classes.logo} />
                   </div>
                   <Typography component='h1' className={classes.title}>

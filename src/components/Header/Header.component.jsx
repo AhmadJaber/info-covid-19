@@ -14,8 +14,8 @@ const useStyles = makeStyles({
     alignItems: 'center',
   },
   logo: {
-    height: '2.25em',
-    width: '2.25em',
+    height: '2.5em',
+    width: '2.5em',
     marginRight: '.6em',
   },
   title: {

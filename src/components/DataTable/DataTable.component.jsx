@@ -13,7 +13,7 @@ import DataTableHead from '../Tablehead/TableHead.component.jsx';
 import DataTableBody from '../TableBody/TableBody.component.jsx';
 import FilterField from '../FilterField/FilterField.component.jsx';
 import styles from './DataTable.module.css';
-import TableLogo from '../../assets/countrydata.svg';
+import TableLogo from '../../assets/globav2.svg';
 
 const useStyles = makeStyles({
   root: {
@@ -31,6 +31,8 @@ const useStyles = makeStyles({
   },
   logo: {
     marginRight: '.6em',
+    height: '2.75em',
+    width: '2.75em',
   },
   title: {
     fontSize: '2rem',

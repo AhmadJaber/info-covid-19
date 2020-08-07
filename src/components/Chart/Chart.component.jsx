@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
+  header: {
+    flex: 1,
+  },
   logo: {
     marginRight: '.3em',
     height: '2.25em',

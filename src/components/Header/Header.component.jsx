@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
+import HeaderLink from '../HeaderLink/HeaderLink.component.jsx';
 import Logo from '../../assets/coronavirus.svg';
 
 const useStyles = makeStyles({
@@ -39,6 +40,8 @@ const Header = () => {
           </Typography>
         </div>
       </div>
+
+      <HeaderLink />
     </div>
   );
 };

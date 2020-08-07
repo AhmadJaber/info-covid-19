@@ -49,7 +49,7 @@ const CountryField = ({ id, handleCountryChange }) => {
       {countries.length !== 0 ? (
         <Autocomplete
           id={id}
-          style={{ width: 200 }}
+          style={{ width: 200, flexShrink: 0 }}
           onChange={handleChange}
           options={countries}
           classes={{

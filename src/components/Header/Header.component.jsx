@@ -8,7 +8,12 @@ import Logo from '../../assets/coronavirus.svg';
 const useStyles = makeStyles({
   headerContainer: {
     padding: '1em',
-    paddingTop: 0,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-first',
+  },
+  headerMainContainer: {
+    flex: 1,
   },
   headerMain: {
     display: 'flex',
@@ -30,7 +35,7 @@ const Header = () => {
 
   return (
     <div className={classes.headerContainer}>
-      <div>
+      <div className={classes.headerMainContainer}>
         <div className={classes.headerMain}>
           <div>
             <Logo className={classes.logo} />
@@ -39,6 +44,9 @@ const Header = () => {
             INFO COVID-19
           </Typography>
         </div>
+        <Typography component='h4' variant='subtitle2' color='textSecondary'>
+          Countrywise Information, Charts & Map
+        </Typography>
       </div>
 
       <HeaderLink />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeProvider, IconButton } from '@material-ui/core';
+import { ThemeProvider, IconButton, Tooltip } from '@material-ui/core';
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { themeDark, themeLight } from './utils/RootStyles';
@@ -33,15 +33,16 @@ const App = () => {
         <div className={styles.container}>
           <CssBaseline />
           <div className={classes.iconButton}>
-            <IconButton
-              edge='end'
-              color='inherit'
-              aria-label='Toggle light/dark theme'
-              onClick={() => setTheme(!theme)}
-              title='Toggle light/dark theme'
-            >
-              {icon}
-            </IconButton>
+            <Tooltip title='Toggle light/dark theme'>
+              <IconButton
+                edge='end'
+                color='inherit'
+                aria-label='Toggle light/dark theme'
+                onClick={() => setTheme(!theme)}
+              >
+                {icon}
+              </IconButton>
+            </Tooltip>
           </div>
 
           <Home />

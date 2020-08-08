@@ -26,7 +26,7 @@ const App = () => {
     <Brightness4RoundedIcon fontSize='large' />
   );
   const appliedTheme = createMuiTheme(theme ? themeLight : themeDark);
-
+  console.log('app renderd');
   return (
     <ThemeProvider theme={appliedTheme}>
       <div className={styles.paddingVertical}>
@@ -45,7 +45,7 @@ const App = () => {
             </Tooltip>
           </div>
 
-          <Home />
+          <Home theme={theme} />
         </div>
       </div>
     </ThemeProvider>

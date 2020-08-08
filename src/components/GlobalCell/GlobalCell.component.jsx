@@ -34,6 +34,7 @@ const style = {
   todayCasesStyle: {
     backgroundColor: '#ffeeaa',
     fontWeight: 600,
+    color: '#222',
   },
   todayDeathsStyle: {
     backgroundColor: '#e53935',
@@ -47,7 +48,7 @@ const style = {
 
 const GlobalCell = ({ classes }) => {
   const { globalContextData: row } = useContext(HomeContext);
-
+  console.log('globalcell rendered');
   return (
     <React.Fragment>
       {row.cases ? (

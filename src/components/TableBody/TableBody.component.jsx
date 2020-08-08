@@ -33,6 +33,7 @@ const style = {
     marginRight: '0.5em',
   },
   todayCasesStyle: {
+    color: '#222',
     backgroundColor: '#ffeeaa',
     fontWeight: 600,
   },

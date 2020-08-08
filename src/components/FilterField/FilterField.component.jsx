@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   ThemeProvider,
   makeStyles,
@@ -7,13 +7,26 @@ import {
 import TextField from '@material-ui/core/TextField';
 import { blue } from '@material-ui/core/colors';
 
-const theme = createMuiTheme({
+import HomeContext from '../../context/HomeContext';
+
+const themeDark = {
   palette: {
+    type: 'dark',
     primary: {
       main: blue[500],
     },
   },
-});
+};
+
+const themeLight = {
+  palette: {
+    type: 'light',
+    primary: {
+      main: blue[500],
+    },
+  },
+};
+
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
@@ -21,11 +34,15 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '0',
   },
 }));
+console.log('filter rendered');
 
 const FilterField = ({ handleChange }) => {
   const classes = useStyles();
+  const { theme } = useContext(HomeContext);
+  const appliedTheme = createMuiTheme(theme ? themeLight : themeDark);
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={appliedTheme}>
       <TextField
         className={classes.margin}
         label='Search By Country'

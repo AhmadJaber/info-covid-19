@@ -64,19 +64,12 @@ class Home extends React.Component {
     });
   }
 
-  handleCountryChange = async (country) => {
-    console.log(country);
-
-    // const fetchedData = await fetchData(country);
-    // this.setState({ data: fetchedData, country: country });
-  };
-
   render() {
     const { globalData, globalDayBeforeData } = this.state;
-
+    console.log('homepage rendered');
     return (
       <HomeContext.Provider
-        value={{ globalContextData: this.state.globalData }}
+        value={{ globalContextData: globalData, theme: this.props.theme }}
       >
         <div className='homepage'>
           <Header />

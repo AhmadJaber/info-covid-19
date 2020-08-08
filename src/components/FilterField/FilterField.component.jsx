@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '0',
   },
 }));
-console.log('filter rendered');
 
 const FilterField = ({ handleChange }) => {
   const classes = useStyles();

@@ -8,6 +8,7 @@ import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
 
 import styles from './App.module.css';
 import Home from './Pages/Home/Home.component.jsx';
+import Footer from './components/Footer/Footer.component.jsx';
 
 const useStyles = makeStyles({
   iconButton: {
@@ -26,7 +27,7 @@ const App = () => {
     <Brightness4RoundedIcon fontSize='large' />
   );
   const appliedTheme = createMuiTheme(theme ? themeLight : themeDark);
-  console.log('app renderd');
+
   return (
     <ThemeProvider theme={appliedTheme}>
       <div className={styles.paddingVertical}>
@@ -46,6 +47,8 @@ const App = () => {
           </div>
 
           <Home theme={theme} />
+
+          <Footer />
         </div>
       </div>
     </ThemeProvider>

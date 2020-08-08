@@ -66,7 +66,7 @@ class Home extends React.Component {
 
   render() {
     const { globalData, globalDayBeforeData } = this.state;
-    console.log('homepage rendered');
+
     return (
       <HomeContext.Provider
         value={{ globalContextData: globalData, theme: this.props.theme }}

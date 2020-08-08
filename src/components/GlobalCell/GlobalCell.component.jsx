@@ -48,7 +48,7 @@ const style = {
 
 const GlobalCell = ({ classes }) => {
   const { globalContextData: row } = useContext(HomeContext);
-  console.log('globalcell rendered');
+
   return (
     <React.Fragment>
       {row.cases ? (

@@ -28,10 +28,27 @@ const themeLight = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-    marginBottom: '1em',
-    marginLeft: '0',
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: 220,
+      marginBottom: '1em',
+      marginLeft: '0',
+      [theme.breakpoints.down('sm')]: {
+        width: 200,
+      },
+      [theme.breakpoints.down('xs')]: {
+        width: 180,
+      },
+
+      '& .MuiFormLabel-root-161': {
+        fontSize: '.93rem',
+
+        [theme.breakpoints.down('sm')]: {
+          fontSize: '.85rem',
+        },
+      },
+    },
   },
 }));
 
@@ -42,13 +59,14 @@ const FilterField = ({ handleChange }) => {
 
   return (
     <ThemeProvider theme={appliedTheme}>
-      <TextField
-        className={classes.margin}
-        label='Search By Country'
-        variant='outlined'
-        id='mui-theme-provider-outlined-input'
-        onChange={handleChange}
-      />
+      <form noValidate className={classes.root}>
+        <TextField
+          label='Search By Country'
+          variant='outlined'
+          id='mui-theme-provider-outlined-input'
+          onChange={handleChange}
+        />
+      </form>
     </ThemeProvider>
   );
 };

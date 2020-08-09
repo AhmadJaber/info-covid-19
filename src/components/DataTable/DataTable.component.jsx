@@ -15,7 +15,7 @@ import FilterField from '../FilterField/FilterField.component.jsx';
 import styles from './DataTable.module.css';
 import TableLogo from '../../assets/globav2.svg';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -33,12 +33,19 @@ const useStyles = makeStyles({
     marginRight: '.6em',
     height: '2.75em',
     width: '2.75em',
+    [theme.breakpoints.down('xs')]: {
+      height: '2.5em',
+      width: '2.5em',
+    },
   },
   title: {
     fontSize: '2rem',
     fontWeight: 600,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.55rem',
+    },
   },
-});
+}));
 
 const DataTable = () => {
   const classes = useStyles();

@@ -40,6 +40,13 @@ const style = (theme) => ({
   contentMain: {
     flex: '1 0 auto',
   },
+  badgeText: {
+    fontWeight: 500,
+    marginLeft: '.5em',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+  },
 });
 
 const DataCard = ({
@@ -88,7 +95,7 @@ const DataCard = ({
                   component='span'
                   color='textSecondary'
                   variant='subtitle1'
-                  style={{ fontWeight: 500, marginLeft: '.5em' }}
+                  className={classes.badgeText}
                 >
                   {`from yesterday (${numFormatter(yesterdayData)})`}
                 </Typography>

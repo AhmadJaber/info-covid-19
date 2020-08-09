@@ -26,10 +26,20 @@ const useStyles = makeStyles((theme) => ({
       padding: '2em',
       paddingTop: '.5em',
     },
+    [theme.breakpoints.down('xs')]: {
+      padding: '1.25em',
+      paddingTop: '.5em',
+    },
   },
   title: {
     fontSize: '1.75rem',
     fontWeight: 600,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.45rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.35rem',
+    },
   },
   flex: {
     marginTop: '1.625em',
@@ -49,6 +59,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '.3em',
     height: '2.25em',
     width: '2.25em',
+
+    [theme.breakpoints.down('xs')]: {
+      height: '2.1em',
+      width: '2.1em',
+    },
   },
   subTitle: {
     fontSize: '1.25rem',
@@ -57,6 +72,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '.5em',
     textDecoration: 'underline',
     textDecorationColor: '#2196F3',
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.15rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.05rem',
+    },
   },
   my: {
     marginTop: '2rem',
@@ -64,6 +86,11 @@ const useStyles = makeStyles((theme) => ({
   },
   logoWrapper: {
     display: 'inline-flex',
+  },
+  subtitleSpan: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
 }));
 
@@ -130,7 +157,11 @@ const Chart = () => {
                 </div>
                 <Typography component='h4' className={classes.subTitle}>
                   Total Cases{' '}
-                  <Typography component='span' color='textSecondary'>
+                  <Typography
+                    className={classes.subtitleSpan}
+                    component='span'
+                    color='textSecondary'
+                  >
                     (Linear Scale)
                   </Typography>
                 </Typography>
@@ -188,7 +219,11 @@ const Chart = () => {
                   style={{ textDecorationColor: '#e53935' }}
                 >
                   Total Deaths{' '}
-                  <Typography component='span' color='textSecondary'>
+                  <Typography
+                    className={classes.subtitleSpan}
+                    component='span'
+                    color='textSecondary'
+                  >
                     (Linear Scale)
                   </Typography>
                 </Typography>

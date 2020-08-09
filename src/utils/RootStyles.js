@@ -2,7 +2,7 @@ export const themeLight = {
   typography: {
     fontFamily: ['Work Sans', 'Roboto'],
     h4: {
-      fontWeight: 700,
+      fontWeight: 600,
     },
   },
   palette: {
@@ -17,7 +17,7 @@ export const themeDark = {
   typography: {
     fontFamily: ['Work Sans', 'Roboto'],
     h4: {
-      fontWeight: 700,
+      fontWeight: 600,
     },
   },
   palette: {

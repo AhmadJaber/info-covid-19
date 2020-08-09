@@ -17,11 +17,14 @@ import {
   numFormatter,
 } from '../../utils/Card';
 
-const style = {
+const style = (theme) => ({
   mainData: {
     marginTop: '.25em',
     marginBottom: '.125em',
     fontSize: '2.5rem',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '2.125rem',
+    },
   },
   colorSuccess: {
     color: '#4CAF50',
@@ -37,7 +40,7 @@ const style = {
   contentMain: {
     flex: '1 0 auto',
   },
-};
+});
 
 const DataCard = ({
   label,

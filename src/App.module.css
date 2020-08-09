@@ -10,16 +10,23 @@ body {
   font-family: 'Work Sans', sans-serif;
 }
 
-.paddingVertical {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-  padding-left: 0;
-  padding-right: 0;
+.container {
+  padding: 1rem;
 }
 
-.container {
-  margin: 0 auto;
+@media screen and (min-width: 60em) {
+  .paddingVertical {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-  max-width: 65rem;
-  width: 100%;
+  .container {
+    margin: 0 auto;
+
+    max-width: 65rem;
+    width: 100%;
+    padding: 0;
+  }
 }

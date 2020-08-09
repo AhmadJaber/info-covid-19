@@ -1,13 +1,25 @@
 import React from 'react';
 import { Link, Tooltip, IconButton } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 import { blue } from '@material-ui/core/colors';
 
+const useStyles = makeStyles((theme) => ({
+  headerLinkWrapper: {
+    flexShrink: 0,
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+  },
+}));
+
 const HeaderLink = () => {
+  const classes = useStyles();
+
   return (
-    <div style={{ flexShrink: 0 }}>
+    <div className={classes.headerLinkWrapper}>
       <Link
         style={{ padding: '0 .5rem' }}
         href='https://github.com/AhmadJaber/info-covid-19'

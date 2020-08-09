@@ -45,7 +45,7 @@ const Header = () => {
           </Typography>
         </div>
         <Typography component='h4' variant='subtitle2' color='textSecondary'>
-          Countrywise Information, Charts & Map
+          Covid-19 Total Information, Countrywise DataTable & Charts
         </Typography>
       </div>
 

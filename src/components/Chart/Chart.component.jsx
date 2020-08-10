@@ -107,13 +107,12 @@ const Chart = () => {
     const fetchedDailySummary = async () => {
       const { data } = await fetchDailySummary();
       const { cases, deaths } = data;
-      setCases(cases);
-      setDeaths(deaths);
-
       const { dCases, dDeaths, dCasesSMA, dDeathsSMA } = chartHooksData(
         cases,
         deaths
       );
+      setCases(cases);
+      setDeaths(deaths);
       setDailyCases(dCases);
       setDailyDeaths(dDeaths);
       setSevenDayMovingAverage({ dCasesSMA, dDeathsSMA });
@@ -128,14 +127,13 @@ const Chart = () => {
     const { data } = await fetchDailySummary(country);
     const dataLogic = country ? data.timeline : data;
     const { cases, deaths } = dataLogic;
-
-    setCases(cases);
-    setDeaths(deaths);
-
     const { dCases, dDeaths, dCasesSMA, dDeathsSMA } = chartHooksData(
       cases,
       deaths
     );
+
+    setCases(cases);
+    setDeaths(deaths);
     setDailyCases(dCases);
     setDailyDeaths(dDeaths);
     setSevenDayMovingAverage({ dCasesSMA, dDeathsSMA });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 
 const Header = () => {
   const classes = useStyles();
-
+  console.log('header renderd');
   return (
     <div className={classes.headerContainer}>
       <div className={classes.headerMainContainer}>
@@ -54,4 +54,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

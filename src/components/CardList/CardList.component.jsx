@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { fetchGlobalData, fetchGlobalDayBeforeData } from '../../api';
 
 import styles from './Cards.module.css';
 import DataCard from '../Card/Card.component.jsx';
@@ -10,6 +11,7 @@ import CasesLogo from '../../assets/casesv2.svg';
 import DeathsLogo from '../../assets/deathv2.svg';
 import RecoverLogo from '../../assets/recoverv2.svg';
 import ActiveLogo from '../../assets/coronav2.svg';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles({
   logo: {
@@ -18,13 +20,36 @@ const useStyles = makeStyles({
   },
 });
 
-const CardList = ({
-  data: { active, cases, deaths, recovered, lastUpdated },
-  dayBeforeData,
-}) => {
+const CardList = () => {
   const classes = useStyles();
+  const [data, setData] = useState({});
+  const [dayBeforeData, setDayBeforeData] = useState([]);
 
-  if (!cases && dayBeforeData.length === 0) {
+  useEffect(() => {
+    const fetchData = async () => {
+      const [firstResponse, secondResponse] = await Promise.all([
+        fetchGlobalData(),
+        fetchGlobalDayBeforeData(),
+      ]);
+      const {
+        data: { active, cases, deaths, recovered, updated: lastUpdated },
+      } = firstResponse;
+
+      const {
+        data: {
+          cases: dayBeforeCases,
+          deaths: dayBeforeDeaths,
+          recovered: dayBeforeRecovered,
+        },
+      } = secondResponse;
+
+      setData({ active, cases, deaths, recovered, lastUpdated });
+      setDayBeforeData([dayBeforeCases, dayBeforeDeaths, dayBeforeRecovered]);
+    };
+    fetchData();
+  });
+
+  if (!data.cases && dayBeforeData.length === 0) {
     return <Skeleton />;
   }
 
@@ -43,37 +68,37 @@ const CardList = ({
       <Grid container spacing={3} justify='center'>
         <DataCard
           label='total cases'
-          todayData={cases}
+          todayData={data.cases}
           yesterdayData={yesterdayCases[date]}
           cardClass={styles.infected}
-          lastUpdated={lastUpdated}
+          lastUpdated={data.lastUpdated}
         >
           <CasesLogo className={classes.logo} />
         </DataCard>
         <DataCard
           label='total deaths'
-          todayData={deaths}
+          todayData={data.deaths}
           yesterdayData={yesterdayDeaths[date]}
           cardClass={styles.deaths}
-          lastUpdated={lastUpdated}
+          lastUpdated={data.lastUpdated}
         >
           <DeathsLogo className={classes.logo} />
         </DataCard>
         <DataCard
           label='total recoveries'
-          todayData={recovered}
+          todayData={data.recovered}
           yesterdayData={yesterdayRecovered[date]}
           cardClass={styles.recovered}
-          lastUpdated={lastUpdated}
+          lastUpdated={data.lastUpdated}
         >
           <RecoverLogo className={classes.logo} />
         </DataCard>
         <DataCard
           label='active cases'
-          todayData={active}
+          todayData={data.active}
           yesterdayData={yesterdayActiveCases}
           cardClass={styles.active}
-          lastUpdated={lastUpdated}
+          lastUpdated={data.lastUpdated}
         >
           <ActiveLogo className={classes.logo} />
         </DataCard>

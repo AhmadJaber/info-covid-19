@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
 
@@ -29,4 +29,4 @@ const DataTableHead = () => {
   );
 };
 
-export default DataTableHead;
+export default memo(DataTableHead);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Table,
@@ -85,6 +85,8 @@ const DataTable = () => {
   const filteredCountryDataRows = countryDataRows.filter((row) => {
     return row.country.toLowerCase().includes(filter);
   });
+
+  console.log('datatable renderd');
 
   return (
     <div className={classes.wrapper}>

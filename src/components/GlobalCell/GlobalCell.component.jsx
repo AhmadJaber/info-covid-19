@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { TableCell, TableRow } from '@material-ui/core';
+import { fetchGlobalData } from '../../api';
 
-import HomeContext from '../../context/HomeContext';
 import { isCasesDeathsGreaterThanZero } from '../../utils/DataTable';
 import styles from '../DataTable/DataTable.module.css';
 
@@ -47,7 +47,40 @@ const style = {
 };
 
 const GlobalCell = ({ classes }) => {
-  const { globalContextData: row } = useContext(HomeContext);
+  const [row, setRow] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await fetchGlobalData();
+      const {
+        active,
+        cases,
+        deaths,
+        recovered,
+        updated: lastUpdated,
+        todayCases,
+        todayDeaths,
+        casesPerOneMillion,
+        deathsPerOneMillion,
+        critical,
+      } = data;
+
+      setRow({
+        active,
+        cases,
+        deaths,
+        recovered,
+        lastUpdated,
+        todayCases,
+        todayDeaths,
+        casesPerOneMillion,
+        deathsPerOneMillion,
+        critical,
+      });
+    };
+
+    fetchData();
+  });
 
   return (
     <React.Fragment>
@@ -117,4 +150,6 @@ const GlobalCell = ({ classes }) => {
   );
 };
 
-export default withStyles(style)(GlobalCell);
+const MemoizedGlobalCell = memo(GlobalCell);
+
+export default withStyles(style)(MemoizedGlobalCell);

@@ -14,7 +14,7 @@ const StyledTableCell = withStyles(() => ({
     fontWeight: 600,
   },
 }))(TableCell);
-
+console.log('thead renderd');
 const DataTableHead = () => {
   return (
     <Paper component={TableHead}>

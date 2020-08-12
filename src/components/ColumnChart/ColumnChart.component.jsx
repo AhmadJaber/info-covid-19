@@ -52,7 +52,7 @@ const ColumnChart = ({ casesOrDeaths, daily, sevenDayMovingAverage, name }) => {
       },
     ],
   };
-
+  console.log('column chart');
   return (
     <div className={classes.chartContainer}>
       <HighchartsReact highcharts={Highcharts} options={options} />

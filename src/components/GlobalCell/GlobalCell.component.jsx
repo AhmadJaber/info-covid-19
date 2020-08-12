@@ -80,7 +80,7 @@ const GlobalCell = ({ classes }) => {
     };
 
     fetchData();
-  });
+  }, []);
 
   return (
     <React.Fragment>

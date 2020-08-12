@@ -96,12 +96,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Chart = () => {
   const classes = useStyles();
-
-  const [cases, setCases] = useState({});
-  const [deaths, setDeaths] = useState({});
-  const [dailyCases, setDailyCases] = useState([]);
-  const [dailyDeaths, setDailyDeaths] = useState([]);
-  const [sevenDayMovingAverage, setSevenDayMovingAverage] = useState({});
+  const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchedDailySummary = async () => {
@@ -111,18 +106,14 @@ const Chart = () => {
         cases,
         deaths
       );
-      setCases(cases);
-      setDeaths(deaths);
-      setDailyCases(dCases);
-      setDailyDeaths(dDeaths);
-      setSevenDayMovingAverage({ dCasesSMA, dDeathsSMA });
+      setData({ cases, deaths, dCases, dDeaths, dCasesSMA, dDeathsSMA });
     };
 
     fetchedDailySummary();
   }, []);
 
   const handleCountryChange = async (country) => {
-    setCases({});
+    setData({});
 
     const { data } = await fetchDailySummary(country);
     const dataLogic = country ? data.timeline : data;
@@ -132,12 +123,9 @@ const Chart = () => {
       deaths
     );
 
-    setCases(cases);
-    setDeaths(deaths);
-    setDailyCases(dCases);
-    setDailyDeaths(dDeaths);
-    setSevenDayMovingAverage({ dCasesSMA, dDeathsSMA });
+    setData({ cases, deaths, dCases, dDeaths, dCasesSMA, dDeathsSMA });
   };
+  console.log('chart renderd', data.cases);
   return (
     <React.Fragment>
       <div className={classes.wrapper}>
@@ -171,9 +159,9 @@ const Chart = () => {
               />
             </div>
 
-            {Object.keys(cases).length !== 0 ? (
+            {Object.keys(data).length !== 0 ? (
               <React.Fragment>
-                <LineChart casesOrDeaths={cases} name='Cases' />
+                <LineChart casesOrDeaths={data.cases} name='Cases' />
 
                 <Typography
                   component='h4'
@@ -186,9 +174,9 @@ const Chart = () => {
                 </Typography>
                 <ColumnChart
                   name='Daily Cases'
-                  casesOrDeaths={cases}
-                  daily={dailyCases}
-                  sevenDayMovingAverage={sevenDayMovingAverage.dCasesSMA}
+                  casesOrDeaths={data.cases}
+                  daily={data.dCases}
+                  sevenDayMovingAverage={data.dCasesSMA}
                 />
               </React.Fragment>
             ) : (
@@ -228,9 +216,9 @@ const Chart = () => {
               </div>
             </div>
 
-            {Object.keys(cases).length !== 0 ? (
+            {Object.keys(data).length !== 0 ? (
               <React.Fragment>
-                <LineChart casesOrDeaths={deaths} name='Deaths' />
+                <LineChart casesOrDeaths={data.deaths} name='Deaths' />
 
                 <Typography
                   component='h4'
@@ -244,9 +232,9 @@ const Chart = () => {
                 </Typography>
                 <ColumnChart
                   name='Daily Deaths'
-                  casesOrDeaths={deaths}
-                  daily={dailyDeaths}
-                  sevenDayMovingAverage={sevenDayMovingAverage.dDeathsSMA}
+                  casesOrDeaths={data.deaths}
+                  daily={data.dDeaths}
+                  sevenDayMovingAverage={data.dDeathsSMA}
                 />
               </React.Fragment>
             ) : (
@@ -261,4 +249,4 @@ const Chart = () => {
   );
 };
 
-export default Chart;
+export default React.memo(Chart);

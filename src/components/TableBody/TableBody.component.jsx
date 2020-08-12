@@ -46,6 +46,7 @@ const style = {
 
 // TODO: Refractor code line 25
 const DataTableBody = ({ countryDataRows, page, rowsPerPage, classes }) => {
+  console.log('tbody rendered');
   return (
     <TableBody>
       <GlobalCell />
@@ -106,7 +107,11 @@ const DataTableBody = ({ countryDataRows, page, rowsPerPage, classes }) => {
             </StyledTableRow>
           ))
       ) : (
-        <Skeleton component='tr' />
+        <StyledTableRow>
+          <StyledTableCell>
+            <Skeleton />
+          </StyledTableCell>
+        </StyledTableRow>
       )}
     </TableBody>
   );

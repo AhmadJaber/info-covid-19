@@ -1,7 +1,10 @@
-import React, { memo } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { Typography, IconButton } from '@material-ui/core';
+import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
+import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
 
+import { ThemeContext } from '../../context/ThemeContext';
 import HeaderLink from '../HeaderLink/HeaderLink.component.jsx';
 import Logo from '../../assets/coronavirus.svg';
 
@@ -12,10 +15,10 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
     alignItems: 'flex-first',
   },
-  headerMainContainer: {
+  headerMain: {
     flex: 1,
   },
-  headerMain: {
+  headerText: {
     display: 'flex',
     alignItems: 'center',
   },
@@ -28,30 +31,54 @@ const useStyles = makeStyles({
     fontSize: '2rem',
     fontWeight: 600,
   },
+  iconButton: {
+    textAlign: 'right',
+    paddingRight: '1em',
+  },
 });
 
 const Header = () => {
   const classes = useStyles();
-  console.log('header renderd');
+
+  const { theme, toggleDarkMode } = useContext(ThemeContext);
+  const icon = theme.isDark ? (
+    <Brightness7RoundedIcon fontSize='large' />
+  ) : (
+    <Brightness4RoundedIcon fontSize='large' />
+  );
+
   return (
-    <div className={classes.headerContainer}>
-      <div className={classes.headerMainContainer}>
-        <div className={classes.headerMain}>
-          <div>
-            <Logo className={classes.logo} />
-          </div>
-          <Typography component='h1' className={classes.title}>
-            INFO COVID-19
-          </Typography>
-        </div>
-        <Typography component='h4' variant='subtitle2' color='textSecondary'>
-          Covid-19 Total Information, Countrywise DataTable & Charts
-        </Typography>
+    <header className={classes.header}>
+      <div className={classes.iconButton}>
+        <IconButton
+          edge='end'
+          color='inherit'
+          aria-label='Toggle light/dark theme'
+          onClick={toggleDarkMode}
+        >
+          {icon}
+        </IconButton>
       </div>
 
-      <HeaderLink />
-    </div>
+      <div className={classes.headerContainer}>
+        <div className={classes.headerMain}>
+          <div className={classes.headerText}>
+            <div>
+              <Logo className={classes.logo} />
+            </div>
+            <Typography component='h1' className={classes.title}>
+              INFO COVID-19
+            </Typography>
+          </div>
+          <Typography component='h4' variant='subtitle2' color='textSecondary'>
+            Covid-19 Total Information, Countrywise DataTable & Charts
+          </Typography>
+        </div>
+
+        <HeaderLink />
+      </div>
+    </header>
   );
 };
 
-export default memo(Header);
+export default Header;

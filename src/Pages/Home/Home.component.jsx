@@ -1,18 +1,20 @@
-import React from 'react';
-import { CardList, DataTable, Header, Chart } from '../../components';
+import React, { lazy, Suspense } from 'react';
+import { CardList, Skeleton } from '../../components';
 
-import HomeContext from '../../context/HomeContext';
+const DataTable = lazy(() =>
+  import('../../components/DataTable/DataTable.component.jsx')
+);
+const Chart = lazy(() => import('../../components/Chart/Chart.component.jsx'));
 
-const Home = ({ theme }) => {
+const Home = () => {
   return (
-    <HomeContext.Provider value={{ theme }}>
-      <div className='homepage'>
-        <Header />
-        <CardList />
+    <div className='homepage'>
+      <CardList />
+      <Suspense fallback={<Skeleton />}>
         <DataTable />
         <Chart />
-      </div>
-    </HomeContext.Provider>
+      </Suspense>
+    </div>
   );
 };
 

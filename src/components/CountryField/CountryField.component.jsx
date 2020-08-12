@@ -64,7 +64,7 @@ const CountryField = ({ id, handleCountryChange }) => {
   const handleChange = (event, value) => {
     handleCountryChange(value);
   };
-
+  console.log('countryfield');
   return (
     <React.Fragment>
       {countries.length !== 0 ? (

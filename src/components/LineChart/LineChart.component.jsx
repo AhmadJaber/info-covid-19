@@ -42,6 +42,7 @@ const LineChart = ({ casesOrDeaths, name }) => {
     },
   };
 
+  console.log('linechart');
   return (
     <div className={classes.chartContainer}>
       <HighchartsReact highcharts={Highcharts} options={options} />

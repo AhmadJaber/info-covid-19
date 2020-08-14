@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, IconButton } from '@material-ui/core';
 import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
@@ -6,6 +7,7 @@ import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
 
 import { ThemeContext } from '../../context/ThemeContext';
 import HeaderLink from '../HeaderLink/HeaderLink.component.jsx';
+import LinkButton from '../LinkButton/LinkButton.component.jsx';
 import Logo from '../../assets/coronavirus.svg';
 
 const useStyles = makeStyles({
@@ -35,11 +37,16 @@ const useStyles = makeStyles({
     textAlign: 'right',
     paddingRight: '1em',
   },
+  headerTop: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    padding: '0 1rem 1rem 1rem',
+  },
 });
 
-const Header = () => {
+const Header = ({ location }) => {
   const classes = useStyles();
-
   const { theme, toggleDarkMode } = useContext(ThemeContext);
   const icon = theme.isDark ? (
     <Brightness7RoundedIcon fontSize='large' />
@@ -49,15 +56,19 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
-      <div className={classes.iconButton}>
-        <IconButton
-          edge='end'
-          color='inherit'
-          aria-label='Toggle light/dark theme'
-          onClick={toggleDarkMode}
-        >
-          {icon}
-        </IconButton>
+      <div className={classes.headerTop}>
+        <LinkButton location={location.pathname.slice(1)} />
+
+        <div className={classes.iconButton}>
+          <IconButton
+            edge='end'
+            color='inherit'
+            aria-label='Toggle light/dark theme'
+            onClick={toggleDarkMode}
+          >
+            {icon}
+          </IconButton>
+        </div>
       </div>
 
       <div className={classes.headerContainer}>
@@ -81,4 +92,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

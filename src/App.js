@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, lazy, Suspense } from 'react';
 import { ThemeProvider } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -6,9 +6,10 @@ import { themeDark, themeLight } from './utils/RootStyles';
 
 import styles from './App.module.css';
 import { ThemeContext } from './context/ThemeContext';
-import Header from './components/Header/Header.component.jsx';
-import Home from './Pages/Home/Home.component.jsx';
-import Footer from './components/Footer/Footer.component.jsx';
+import { Header, Footer, Skeleton } from './components';
+
+const Home = lazy(() => import('./Pages/Home/Home.component.jsx'));
+const Overtime = lazy(() => import('./Pages/Overtime/Overtime.component.jsx'));
 
 const App = () => {
   const { theme } = useContext(ThemeContext);
@@ -20,7 +21,10 @@ const App = () => {
         <div className={styles.container}>
           <CssBaseline />
           <Header />
-          <Home />
+          <Suspense fallback={<Skeleton />}>
+            <Home />
+            <Overtime />
+          </Suspense>
           <Footer />
         </div>
       </div>

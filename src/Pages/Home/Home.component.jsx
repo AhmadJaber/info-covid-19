@@ -1,6 +1,9 @@
 import React, { lazy, Suspense } from 'react';
-import { CardList, Skeleton } from '../../components';
+import { Skeleton } from '../../components';
 
+const CardList = lazy(() =>
+  import('../../components/CardList/CardList.component.jsx')
+);
 const DataTable = lazy(() =>
   import('../../components/DataTable/DataTable.component.jsx')
 );
@@ -10,6 +13,7 @@ const Home = () => {
   return (
     <div className='homepage'>
       <CardList />
+
       <Suspense fallback={<Skeleton />}>
         <DataTable />
         <Chart />

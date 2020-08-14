@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 import { fetchDailySummary } from '../../api';
 
 import { chartHooksData } from '../../utils/ChartDataStructure';
+
 import LineChart from '../LineChart/LineChart.component.jsx';
 import ColumnChart from '../ColumnChart/ColumnChart.component.jsx';
-import CountryField from '../CountryField/CountryField.component.jsx';
 import Skeleton from '../Skeleton/Skeleton.component.jsx';
 import Scroller from '../Scroller/Scroller.component.jsx';
 import CasesLogo from '../../assets/coronav2.svg';
 import DeathsLogo from '../../assets/deathv2.svg';
+
+const CountryField = lazy(() =>
+  import('../CountryField/CountryField.component.jsx')
+);
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -125,7 +129,7 @@ const Chart = () => {
 
     setData({ cases, deaths, dCases, dDeaths, dCasesSMA, dDeathsSMA });
   };
-  console.log('chart renderd', data.cases);
+
   return (
     <React.Fragment>
       <div className={classes.wrapper}>
@@ -153,10 +157,12 @@ const Chart = () => {
                 </Typography>
               </div>
 
-              <CountryField
-                id='countryCharts'
-                handleCountryChange={handleCountryChange}
-              />
+              <Suspense fallback={<Skeleton />}>
+                <CountryField
+                  id='countryCharts'
+                  handleCountryChange={handleCountryChange}
+                />
+              </Suspense>
             </div>
 
             {Object.keys(data).length !== 0 ? (

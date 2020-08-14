@@ -7,7 +7,7 @@ import {
 import TextField from '@material-ui/core/TextField';
 import { blue } from '@material-ui/core/colors';
 
-import ThemeContext from '../../context/ThemeContext';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const themeDark = {
   palette: {
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 const FilterField = ({ handleChange }) => {
   const classes = useStyles();
   const { theme } = useContext(ThemeContext);
-  const appliedTheme = createMuiTheme(theme ? themeLight : themeDark);
+  const appliedTheme = createMuiTheme(theme.isDark ? themeDark : themeLight);
 
   return (
     <ThemeProvider theme={appliedTheme}>

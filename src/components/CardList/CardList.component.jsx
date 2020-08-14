@@ -3,7 +3,6 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { fetchGlobalData, fetchGlobalDayBeforeData } from '../../api';
 
-import styles from './Cards.module.css';
 import DataCard from '../Card/Card.component.jsx';
 import Skeleton from '../Skeleton/Skeleton.component.jsx';
 
@@ -14,6 +13,9 @@ import ActiveLogo from '../../assets/coronav2.svg';
 import { useEffect } from 'react';
 
 const useStyles = makeStyles({
+  cardContainer: {
+    padding: '0.75rem',
+  },
   logo: {
     width: '3.5em',
     height: '3.5em',
@@ -63,13 +65,12 @@ const CardList = () => {
       yesterdayCases[date] - yesterdayDeaths[date] - yesterdayRecovered[date];
 
     return (
-      <div className={styles.cardContainer}>
+      <div className={classes.cardContainer}>
         <Grid container spacing={3} justify='center'>
           <DataCard
             label='total cases'
             todayData={data.cases}
             yesterdayData={yesterdayCases[date]}
-            cardClass={styles.infected}
             lastUpdated={data.lastUpdated}
           >
             <CasesLogo className={classes.logo} />
@@ -78,7 +79,6 @@ const CardList = () => {
             label='total deaths'
             todayData={data.deaths}
             yesterdayData={yesterdayDeaths[date]}
-            cardClass={styles.deaths}
             lastUpdated={data.lastUpdated}
           >
             <DeathsLogo className={classes.logo} />
@@ -87,7 +87,6 @@ const CardList = () => {
             label='total recoveries'
             todayData={data.recovered}
             yesterdayData={yesterdayRecovered[date]}
-            cardClass={styles.recovered}
             lastUpdated={data.lastUpdated}
           >
             <RecoverLogo className={classes.logo} />
@@ -96,7 +95,6 @@ const CardList = () => {
             label='active cases'
             todayData={data.active}
             yesterdayData={yesterdayActiveCases}
-            cardClass={styles.active}
             lastUpdated={data.lastUpdated}
           >
             <ActiveLogo className={classes.logo} />

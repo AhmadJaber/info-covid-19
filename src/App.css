@@ -4,29 +4,27 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  background-color: #fff;
-  font-family: 'Work Sans', sans-serif;
-}
-
-.container {
+.App__container {
   padding: 1rem;
 }
 
 @media screen and (min-width: 60em) {
-  .paddingVertical {
+  .App__padding-vertical {
     padding-top: 8rem;
     padding-bottom: 8rem;
     padding-left: 0;
     padding-right: 0;
   }
 
-  .container {
+  .App__container {
     margin: 0 auto;
 
     max-width: 65rem;
     width: 100%;
     padding: 0;
   }
+}
+.leaflet-container {
+  height: 400px;
+  width: 100%;
 }

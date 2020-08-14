@@ -8,9 +8,7 @@ import {
   Paper,
   Card,
 } from '@material-ui/core';
-import cx from 'classnames';
 
-import styles from '../CardList/Cards.module.css';
 import {
   getPercentageChange,
   getChipBackground,
@@ -47,19 +45,23 @@ const style = (theme) => ({
       display: 'none',
     },
   },
+  badgeContainer: {
+    display: 'flex',
+    alignItems: 'baseline',
+    marginTop: '0.5rem',
+  },
 });
 
 const DataCard = ({
   label,
   todayData,
-  cardClass,
   lastUpdated,
   yesterdayData,
   classes,
   children,
 }) => {
   return (
-    <Grid item xs={12} md={6} className={cx(classes.cardGrid, cardClass)}>
+    <Grid item xs={12} md={6} className={classes.cardGrid}>
       <Paper elevation={3} component={Card} variant='outlined'>
         <CardContent>
           <div className={classes.content}>
@@ -85,7 +87,7 @@ const DataCard = ({
                 {new Date(lastUpdated).toDateString()}
               </Typography>
 
-              <div className={styles.badgeContainer}>
+              <div className={classes.badgeContainer}>
                 <Chip
                   label={getPercentageChange(todayData, yesterdayData)}
                   style={getChipBackground(todayData, yesterdayData, label)}

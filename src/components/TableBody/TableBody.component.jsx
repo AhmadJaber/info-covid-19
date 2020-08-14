@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { TableBody, TableCell, TableRow } from '@material-ui/core';
 import { isCasesDeathsGreaterThanZero } from '../../utils/DataTable';
 
-import styles from '../DataTable/DataTable.module.css';
 import GlobalCell from '../GlobalCell/GlobalCell.component.jsx';
 import Skeleton from '../Skeleton/Skeleton.component.jsx';
 
@@ -55,10 +54,10 @@ const DataTableBody = ({ countryDataRows, page, rowsPerPage, classes }) => {
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map((row) => (
             <StyledTableRow key={row.country}>
-              <StyledTableCell align='center' className={styles.tableCells}>
+              <StyledTableCell align='center' className='tableCells'>
                 {row.countryRank}
               </StyledTableCell>
-              <StyledTableCell align='left' className={styles.tableCells}>
+              <StyledTableCell align='left' className='tableCells'>
                 <div className={classes.countryCell}>
                   <img
                     src={row.countryFlag}
@@ -68,21 +67,21 @@ const DataTableBody = ({ countryDataRows, page, rowsPerPage, classes }) => {
                   {row.country}
                 </div>
               </StyledTableCell>
-              <StyledTableCell align='center' className={styles.tableCells}>
+              <StyledTableCell align='center' className='tableCells'>
                 {row.cases.toLocaleString('en-US')}
               </StyledTableCell>
-              <StyledTableCell align='center' className={styles.tableCells}>
+              <StyledTableCell align='center' className='tableCells'>
                 {row.deaths.toLocaleString('en-US')}
               </StyledTableCell>
-              <StyledTableCell align='center' className={styles.tableCells}>
+              <StyledTableCell align='center' className='tableCells'>
                 {row.critical.toLocaleString('en-US')}
               </StyledTableCell>
-              <StyledTableCell align='center' className={styles.tableCells}>
+              <StyledTableCell align='center' className='tableCells'>
                 {row.recovered.toLocaleString('en-US')}
               </StyledTableCell>
               <StyledTableCell
                 align='center'
-                className={`${styles.tableCells} ${
+                className={`tableCells ${
                   row.todayCases > 0 ? classes.todayCasesStyle : ''
                 }`}
               >
@@ -91,17 +90,17 @@ const DataTableBody = ({ countryDataRows, page, rowsPerPage, classes }) => {
               </StyledTableCell>
               <StyledTableCell
                 align='center'
-                className={`${styles.tableCells} ${
+                className={`tableCells ${
                   row.todayDeaths > 0 ? classes.todayDeathsStyle : ''
                 }`}
               >
                 {isCasesDeathsGreaterThanZero(row.todayDeaths) ? '+' : ''}
                 {row.todayDeaths.toLocaleString('en-US')}
               </StyledTableCell>
-              <StyledTableCell align='center' className={styles.tableCells}>
+              <StyledTableCell align='center' className='tableCells'>
                 {row.casesPerOneMillion.toLocaleString('en-US')}
               </StyledTableCell>
-              <StyledTableCell align='center' className={styles.tableCells}>
+              <StyledTableCell align='center' className='tableCells'>
                 {row.deathsPerOneMillion.toLocaleString('en-US')}
               </StyledTableCell>
             </StyledTableRow>

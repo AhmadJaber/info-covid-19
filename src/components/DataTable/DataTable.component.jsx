@@ -9,10 +9,10 @@ import {
 } from '@material-ui/core';
 import { fetchCountryInfo } from '../../api';
 
+import './DataTable.css';
 import DataTableHead from '../Tablehead/TableHead.component.jsx';
 import DataTableBody from '../TableBody/TableBody.component.jsx';
 import FilterField from '../FilterField/FilterField.component.jsx';
-import styles from './DataTable.module.css';
 import TableLogo from '../../assets/globav2.svg';
 
 const useStyles = makeStyles((theme) => ({
@@ -101,7 +101,7 @@ const DataTable = () => {
 
       <Paper variant='outlined' className={classes.root}>
         <TableContainer>
-          <Table className={styles.table} aria-label='customized table'>
+          <Table className='table' aria-label='customized table'>
             <DataTableHead />
             <DataTableBody
               countryDataRows={filteredCountryDataRows}

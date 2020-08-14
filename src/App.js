@@ -1,10 +1,12 @@
 import React, { useContext, lazy, Suspense } from 'react';
+import './App.css';
+
+import { Router } from '@reach/router';
 import { ThemeProvider } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { themeDark, themeLight } from './utils/RootStyles';
 
-import styles from './App.module.css';
 import { ThemeContext } from './context/ThemeContext';
 import { Header, Footer, Skeleton } from './components';
 
@@ -17,13 +19,15 @@ const App = () => {
 
   return (
     <ThemeProvider theme={appliedTheme}>
-      <div className={styles.paddingVertical}>
-        <div className={styles.container}>
+      <div className='App App__padding-vertical'>
+        <div className='App__container'>
           <CssBaseline />
           <Header />
           <Suspense fallback={<Skeleton />}>
-            <Home />
-            <Overtime />
+            <Router>
+              <Home path='/' />
+              <Overtime path='/overtime' />
+            </Router>
           </Suspense>
           <Footer />
         </div>

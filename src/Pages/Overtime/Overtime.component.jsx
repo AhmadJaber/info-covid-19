@@ -71,7 +71,7 @@ class Overtime extends React.Component {
   }
   render() {
     return (
-      <div className='App'>
+      <div className='overtime'>
         <Grid container justify='center' alignItems='center' spacing={3}>
           <Grid item xs={8}>
             <Typography id='title' variant='h3'>

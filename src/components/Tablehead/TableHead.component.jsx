@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
 
 import columns from './TableColumns';
-import styles from '../DataTable/DataTable.module.css';
 
 const StyledTableCell = withStyles(() => ({
   head: {
@@ -20,7 +19,7 @@ const DataTableHead = () => {
     <Paper component={TableHead}>
       <TableRow>
         {columns.map((column) => (
-          <StyledTableCell className={styles.tableCells} key={column.id}>
+          <StyledTableCell className='tableCells' key={column.id}>
             {column.label}
           </StyledTableCell>
         ))}

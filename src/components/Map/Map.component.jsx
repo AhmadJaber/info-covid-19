@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { Map, Circle, TileLayer } from 'react-leaflet';
+import Skeleton from '../Skeleton/Skeleton.component.jsx';
 
 export default class Leaflet extends React.Component {
   render() {
@@ -44,7 +44,7 @@ const MyCircles = (props) => {
   return props.data.map((row, i) => {
     if (row[props.date] <= 0) {
       // No cases on this date
-      return;
+      return <Skeleton key={i} />;
     }
     if (row['Lat'] != null && row['Long'] != null) {
       return (
@@ -57,6 +57,8 @@ const MyCircles = (props) => {
           stroke={false}
         />
       );
+    } else {
+      return <Skeleton key={i} />;
     }
   });
 };

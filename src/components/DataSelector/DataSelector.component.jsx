@@ -4,9 +4,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export default class DataSelector extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <FormGroup row>
@@ -15,33 +12,33 @@ export default class DataSelector extends React.Component {
             <Checkbox
               checked={this.props.infectedOn}
               onChange={this.props.toggleInfectedData}
-              className='checkedA'
+              className="checkedA"
               style={{ color: 'red' }}
             />
           }
-          label='Infected'
+          label="Infected"
         />
         <FormControlLabel
           control={
             <Checkbox
               checked={this.props.recoveredOn}
               onChange={this.props.toggleRecoveredData}
-              className='checkedB'
+              className="checkedB"
               style={{ color: 'green' }}
             />
           }
-          label='Recovered'
+          label="Recovered"
         />
         <FormControlLabel
           control={
             <Checkbox
               checked={this.props.deathOn}
               onChange={this.props.toggleDeathData}
-              name='checkedC'
+              name="checkedC"
               style={{ color: 'black' }}
             />
           }
-          label='Dead'
+          label="Dead"
         />
       </FormGroup>
     );

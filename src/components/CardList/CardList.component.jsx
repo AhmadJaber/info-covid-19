@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 
 const useStyles = makeStyles({
   cardContainer: {
-    padding: '0.75rem',
+    padding: '1rem .75rem',
   },
   logo: {
     width: '3.5em',

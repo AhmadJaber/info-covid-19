@@ -12,7 +12,7 @@ import Logo from '../../assets/coronavirus.svg';
 
 const useStyles = makeStyles({
   headerContainer: {
-    padding: '1em',
+    padding: '1rem .75rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'flex-first',
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    padding: '0 1rem 1rem 1rem',
+    padding: '0 .75rem 1rem .75rem',
   },
 });
 

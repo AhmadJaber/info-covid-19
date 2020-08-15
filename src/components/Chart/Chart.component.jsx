@@ -18,9 +18,7 @@ const CountryField = lazy(() =>
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    padding: '.75em',
-    paddingTop: '1.125em',
-    paddingBottom: '1.125em',
+    padding: '1rem .75rem',
   },
   chartWrapper: {
     padding: '4em',

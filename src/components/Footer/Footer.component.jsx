@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   footerContainer: {
     padding: '1rem',
     marginTop: '.25rem',
@@ -18,8 +18,11 @@ const useStyles = makeStyles({
       textDecoration: 'none',
       transition: 'opacity 275ms linear',
     },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '.8rem',
+    },
   },
-});
+}));
 
 const Footer = () => {
   const classes = useStyles();

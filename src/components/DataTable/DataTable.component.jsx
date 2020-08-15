@@ -20,9 +20,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   wrapper: {
-    padding: '.75em',
-    paddingTop: '1.125em',
-    paddingBottom: '1.125em',
+    padding: '1rem .75rem',
   },
   headerMain: {
     margin: '1.625em 0 .625em',

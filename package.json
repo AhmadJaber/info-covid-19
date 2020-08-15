@@ -9,7 +9,8 @@
     "dev": "parcel ./src/index.html",
     "dev:mock": "cross-env PET_MOCK=mock npm run dev",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "build": "parcel build index.html"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

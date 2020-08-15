@@ -27,7 +27,6 @@ export const GlobalProvider = ({ children }) => {
     });
   };
 
-  console.log(theme);
   const value = { theme, toggleDarkMode };
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

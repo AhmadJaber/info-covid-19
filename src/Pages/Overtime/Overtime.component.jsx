@@ -1,4 +1,5 @@
 import React from 'react';
+import './Overtime.css';
 
 import Papa from 'papaparse';
 import axios from 'axios';
@@ -32,8 +33,6 @@ class Overtime extends React.Component {
     const parsedInfectedData = Overtime.pullAndParseUrl(infectedUrl);
     const parsedRecoveredData = Overtime.pullAndParseUrl(recoveredUrl);
     const parsedDeathData = Overtime.pullAndParseUrl(deathUrl);
-
-    console.log(parsedInfectedData);
 
     parsedInfectedData.then((result) => {
       this.setState({ infectedData: result.data });
@@ -73,8 +72,8 @@ class Overtime extends React.Component {
     return (
       <div className='overtime'>
         <Grid container justify='center' alignItems='center' spacing={3}>
-          <Grid item xs={8}>
-            <Typography id='title' variant='h3'>
+          <Grid item xs={10} sm={8}>
+            <Typography id='title' variant='h4' className='overtime__title'>
               Visualizing COVID-19 Over Time
             </Typography>
           </Grid>

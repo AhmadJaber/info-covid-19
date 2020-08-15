@@ -8,7 +8,7 @@ import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
 import { ThemeContext } from '../../context/ThemeContext';
 import HeaderLink from '../HeaderLink/HeaderLink.component.jsx';
 import LinkButton from '../LinkButton/LinkButton.component.jsx';
-import Logo from '../../assets/coronavirus.svg';
+import { ReactComponent as Logo } from '../../assets/coronavirus.svg';
 
 const useStyles = makeStyles({
   headerContainer: {
@@ -49,9 +49,9 @@ const Header = ({ location }) => {
   const classes = useStyles();
   const { theme, toggleDarkMode } = useContext(ThemeContext);
   const icon = theme.isDark ? (
-    <Brightness7RoundedIcon fontSize='large' />
+    <Brightness7RoundedIcon fontSize="large" />
   ) : (
-    <Brightness4RoundedIcon fontSize='large' />
+    <Brightness4RoundedIcon fontSize="large" />
   );
 
   return (
@@ -61,9 +61,9 @@ const Header = ({ location }) => {
 
         <div className={classes.iconButton}>
           <IconButton
-            edge='end'
-            color='inherit'
-            aria-label='Toggle light/dark theme'
+            edge="end"
+            color="inherit"
+            aria-label="Toggle light/dark theme"
             onClick={toggleDarkMode}
           >
             {icon}
@@ -77,11 +77,11 @@ const Header = ({ location }) => {
             <div>
               <Logo className={classes.logo} />
             </div>
-            <Typography component='h1' className={classes.title}>
+            <Typography component="h1" className={classes.title}>
               INFO COVID-19
             </Typography>
           </div>
-          <Typography component='h4' variant='subtitle2' color='textSecondary'>
+          <Typography component="h4" variant="subtitle2" color="textSecondary">
             Covid-19 Total Information, Countrywise DataTable & Charts
           </Typography>
         </div>

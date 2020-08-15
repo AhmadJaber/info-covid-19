@@ -3,9 +3,6 @@ import React from 'react';
 import { Map, Circle, TileLayer } from 'react-leaflet';
 
 export default class Leaflet extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const position = [35, -40];
     const zoom = 2;
@@ -21,21 +18,21 @@ export default class Leaflet extends React.Component {
           <MyCircles
             data={this.props.infectedData}
             date={this.props.date}
-            color='red'
+            color="red"
           />
         )}
         {this.props.recoveredOn && (
           <MyCircles
             data={this.props.recoveredData}
             date={this.props.date}
-            color='green'
+            color="green"
           />
         )}
         {this.props.deathOn && (
           <MyCircles
             data={this.props.deathData}
             date={this.props.date}
-            color='black'
+            color="black"
           />
         )}
       </Map>

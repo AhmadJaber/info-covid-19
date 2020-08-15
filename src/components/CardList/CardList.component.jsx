@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { fetchGlobalData, fetchGlobalDayBeforeData } from '../../api';
 
 import DataCard from '../Card/Card.component.jsx';
 import Skeleton from '../Skeleton/Skeleton.component.jsx';
-
-import CasesLogo from '../../assets/casesv2.svg';
-import DeathsLogo from '../../assets/deathv2.svg';
-import RecoverLogo from '../../assets/recoverv2.svg';
-import ActiveLogo from '../../assets/coronav2.svg';
-import { useEffect } from 'react';
+import { ReactComponent as CasesLogo } from '../../assets/casesv2.svg';
+import { ReactComponent as DeathsLogo } from '../../assets/deathv2.svg';
+import { ReactComponent as RecoverLogo } from '../../assets/recoverv2.svg';
+import { ReactComponent as ActiveLogo } from '../../assets/coronav2.svg';
 
 const useStyles = makeStyles({
   cardContainer: {
@@ -53,56 +51,55 @@ const CardList = () => {
 
   if (!data.cases || dayBeforeData.length === 0) {
     return <Skeleton />;
-  } else {
-    const yesterday = dayBeforeData.reduce(
-      (accm, data) => accm.concat(Object.keys(data)),
-      []
-    );
-
-    const [yesterdayCases, yesterdayDeaths, yesterdayRecovered] = dayBeforeData;
-    const [date] = yesterday;
-    const yesterdayActiveCases =
-      yesterdayCases[date] - yesterdayDeaths[date] - yesterdayRecovered[date];
-
-    return (
-      <div className={classes.cardContainer}>
-        <Grid container spacing={3} justify='center'>
-          <DataCard
-            label='total cases'
-            todayData={data.cases}
-            yesterdayData={yesterdayCases[date]}
-            lastUpdated={data.lastUpdated}
-          >
-            <CasesLogo className={classes.logo} />
-          </DataCard>
-          <DataCard
-            label='total deaths'
-            todayData={data.deaths}
-            yesterdayData={yesterdayDeaths[date]}
-            lastUpdated={data.lastUpdated}
-          >
-            <DeathsLogo className={classes.logo} />
-          </DataCard>
-          <DataCard
-            label='total recoveries'
-            todayData={data.recovered}
-            yesterdayData={yesterdayRecovered[date]}
-            lastUpdated={data.lastUpdated}
-          >
-            <RecoverLogo className={classes.logo} />
-          </DataCard>
-          <DataCard
-            label='active cases'
-            todayData={data.active}
-            yesterdayData={yesterdayActiveCases}
-            lastUpdated={data.lastUpdated}
-          >
-            <ActiveLogo className={classes.logo} />
-          </DataCard>
-        </Grid>
-      </div>
-    );
   }
+  const yesterday = dayBeforeData.reduce(
+    (accm, bdata) => accm.concat(Object.keys(bdata)),
+    []
+  );
+
+  const [yesterdayCases, yesterdayDeaths, yesterdayRecovered] = dayBeforeData;
+  const [date] = yesterday;
+  const yesterdayActiveCases =
+    yesterdayCases[date] - yesterdayDeaths[date] - yesterdayRecovered[date];
+
+  return (
+    <div className={classes.cardContainer}>
+      <Grid container spacing={3} justify="center">
+        <DataCard
+          label="total cases"
+          todayData={data.cases}
+          yesterdayData={yesterdayCases[date]}
+          lastUpdated={data.lastUpdated}
+        >
+          <CasesLogo className={classes.logo} />
+        </DataCard>
+        <DataCard
+          label="total deaths"
+          todayData={data.deaths}
+          yesterdayData={yesterdayDeaths[date]}
+          lastUpdated={data.lastUpdated}
+        >
+          <DeathsLogo className={classes.logo} />
+        </DataCard>
+        <DataCard
+          label="total recoveries"
+          todayData={data.recovered}
+          yesterdayData={yesterdayRecovered[date]}
+          lastUpdated={data.lastUpdated}
+        >
+          <RecoverLogo className={classes.logo} />
+        </DataCard>
+        <DataCard
+          label="active cases"
+          todayData={data.active}
+          yesterdayData={yesterdayActiveCases}
+          lastUpdated={data.lastUpdated}
+        >
+          <ActiveLogo className={classes.logo} />
+        </DataCard>
+      </Grid>
+    </div>
+  );
 };
 
 export default CardList;

@@ -5,43 +5,31 @@
   "repository": "https://github.com/AhmadJaber/info-covid-19.git",
   "author": "AhmadJaber <jaber131706@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "dev": "parcel ./src/index.html",
-    "dev:mock": "cross-env PET_MOCK=mock npm run dev",
-    "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-    "build": "parcel build ./src/index.html"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.4.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^4.0.7",
-    "parcel-bundler": "^1.12.4",
-    "prettier": "^2.0.5"
-  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
-    "@svgr/parcel-plugin-svgr": "^5.4.0",
-    "autoprefixer": "^9.8.5",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
-    "classnames": "^2.2.6",
     "highcharts": "^8.1.2",
     "highcharts-react-official": "^3.0.0",
     "leaflet": "^1.6.0",
     "local-storage-fallback": "^4.1.1",
     "papaparse": "^5.2.0",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-leaflet": "^2.7.0",
     "react-router-dom": "^5.2.0",
-    "react-scroll": "^1.8.0",
-    "react-simple-maps": "^2.1.2"
+    "react-scripts": "3.4.3",
+    "react-scroll": "^1.8.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -54,5 +42,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "prettier": "^2.0.5"
   }
 }

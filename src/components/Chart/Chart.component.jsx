@@ -9,8 +9,8 @@ import LineChart from '../LineChart/LineChart.component.jsx';
 import ColumnChart from '../ColumnChart/ColumnChart.component.jsx';
 import Skeleton from '../Skeleton/Skeleton.component.jsx';
 import Scroller from '../Scroller/Scroller.component.jsx';
-import CasesLogo from '../../assets/coronav2.svg';
-import DeathsLogo from '../../assets/deathv2.svg';
+import { ReactComponent as CasesLogo } from '../../assets/coronav2.svg';
+import { ReactComponent as DeathsLogo } from '../../assets/deathv2.svg';
 
 const CountryField = lazy(() =>
   import('../CountryField/CountryField.component.jsx')
@@ -129,7 +129,7 @@ const Chart = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div className={classes.wrapper}>
         <Paper>
           <div className={classes.chartWrapper}>
@@ -139,16 +139,16 @@ const Chart = () => {
                   <div className={classes.logoWrapper}>
                     <CasesLogo className={classes.logo} />
                   </div>
-                  <Typography component='h1' className={classes.title}>
+                  <Typography component="h1" className={classes.title}>
                     Cases
                   </Typography>
                 </div>
-                <Typography component='h4' className={classes.subTitle}>
+                <Typography component="h4" className={classes.subTitle}>
                   Total Cases{' '}
                   <Typography
                     className={classes.subtitleSpan}
-                    component='span'
-                    color='textSecondary'
+                    component="span"
+                    color="textSecondary"
                   >
                     (Linear Scale)
                   </Typography>
@@ -157,32 +157,32 @@ const Chart = () => {
 
               <Suspense fallback={<Skeleton />}>
                 <CountryField
-                  id='countryCharts'
+                  id="countryCharts"
                   handleCountryChange={handleCountryChange}
                 />
               </Suspense>
             </div>
 
             {Object.keys(data).length !== 0 ? (
-              <React.Fragment>
-                <LineChart casesOrDeaths={data.cases} name='Cases' />
+              <>
+                <LineChart casesOrDeaths={data.cases} name="Cases" />
 
                 <Typography
-                  component='h4'
+                  component="h4"
                   className={`${classes.subTitle} ${classes.my}`}
                 >
                   Daily New Cases{' '}
-                  <Typography component='span' color='textSecondary'>
+                  <Typography component="span" color="textSecondary">
                     (Per Day)
                   </Typography>
                 </Typography>
                 <ColumnChart
-                  name='Daily Cases'
+                  name="Daily Cases"
                   casesOrDeaths={data.cases}
                   daily={data.dCases}
                   sevenDayMovingAverage={data.dCasesSMA}
                 />
-              </React.Fragment>
+              </>
             ) : (
               <Skeleton />
             )}
@@ -199,20 +199,20 @@ const Chart = () => {
                   <div>
                     <DeathsLogo className={classes.logo} />
                   </div>
-                  <Typography component='h1' className={classes.title}>
+                  <Typography component="h1" className={classes.title}>
                     Deaths
                   </Typography>
                 </div>
                 <Typography
-                  component='h4'
+                  component="h4"
                   className={classes.subTitle}
                   style={{ textDecorationColor: '#e53935' }}
                 >
                   Total Deaths{' '}
                   <Typography
                     className={classes.subtitleSpan}
-                    component='span'
-                    color='textSecondary'
+                    component="span"
+                    color="textSecondary"
                   >
                     (Linear Scale)
                   </Typography>
@@ -221,26 +221,26 @@ const Chart = () => {
             </div>
 
             {Object.keys(data).length !== 0 ? (
-              <React.Fragment>
-                <LineChart casesOrDeaths={data.deaths} name='Deaths' />
+              <>
+                <LineChart casesOrDeaths={data.deaths} name="Deaths" />
 
                 <Typography
-                  component='h4'
+                  component="h4"
                   className={`${classes.subTitle} ${classes.my}`}
                   style={{ textDecorationColor: '#e53935' }}
                 >
                   Daily New Deaths{' '}
-                  <Typography component='span' color='textSecondary'>
+                  <Typography component="span" color="textSecondary">
                     (Per Day)
                   </Typography>
                 </Typography>
                 <ColumnChart
-                  name='Daily Deaths'
+                  name="Daily Deaths"
                   casesOrDeaths={data.deaths}
                   daily={data.dDeaths}
                   sevenDayMovingAverage={data.dDeathsSMA}
                 />
-              </React.Fragment>
+              </>
             ) : (
               <Skeleton />
             )}
@@ -249,7 +249,7 @@ const Chart = () => {
           <Scroller />
         </Paper>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

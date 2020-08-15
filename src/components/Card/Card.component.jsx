@@ -59,57 +59,55 @@ const DataCard = ({
   yesterdayData,
   classes,
   children,
-}) => {
-  return (
-    <Grid item xs={12} md={6} className={classes.cardGrid}>
-      <Paper elevation={3} component={Card} variant='outlined'>
-        <CardContent>
-          <div className={classes.content}>
-            <div className={classes.contentMain}>
-              <Typography
-                component='h6'
-                variant='subtitle2'
-                color='textSecondary'
-                gutterBottom
-              >
-                {label.toUpperCase()}
-              </Typography>
-              <Typography
-                variant='h4'
-                component='h3'
-                className={`${classes.mainData} ${
-                  label === 'total recoveries' ? classes.colorSuccess : ''
-                }`}
-              >
-                {todayData.toLocaleString()}
-              </Typography>
-              <Typography color='textSecondary'>
-                {new Date(lastUpdated).toDateString()}
-              </Typography>
+}) => (
+  <Grid item xs={12} md={6} className={classes.cardGrid}>
+    <Paper elevation={3} component={Card} variant="outlined">
+      <CardContent>
+        <div className={classes.content}>
+          <div className={classes.contentMain}>
+            <Typography
+              component="h6"
+              variant="subtitle2"
+              color="textSecondary"
+              gutterBottom
+            >
+              {label.toUpperCase()}
+            </Typography>
+            <Typography
+              variant="h4"
+              component="h3"
+              className={`${classes.mainData} ${
+                label === 'total recoveries' ? classes.colorSuccess : ''
+              }`}
+            >
+              {todayData.toLocaleString()}
+            </Typography>
+            <Typography color="textSecondary">
+              {new Date(lastUpdated).toDateString()}
+            </Typography>
 
-              <div className={classes.badgeContainer}>
-                <Chip
-                  label={getPercentageChange(todayData, yesterdayData)}
-                  style={getChipBackground(todayData, yesterdayData, label)}
-                  component='span'
-                />
-                <Typography
-                  component='span'
-                  color='textSecondary'
-                  variant='subtitle1'
-                  className={classes.badgeText}
-                >
-                  {`from yesterday (${numFormatter(yesterdayData)})`}
-                </Typography>
-              </div>
+            <div className={classes.badgeContainer}>
+              <Chip
+                label={getPercentageChange(todayData, yesterdayData)}
+                style={getChipBackground(todayData, yesterdayData, label)}
+                component="span"
+              />
+              <Typography
+                component="span"
+                color="textSecondary"
+                variant="subtitle1"
+                className={classes.badgeText}
+              >
+                {`from yesterday (${numFormatter(yesterdayData)})`}
+              </Typography>
             </div>
-
-            <div>{children}</div>
           </div>
-        </CardContent>
-      </Paper>
-    </Grid>
-  );
-};
+
+          <div>{children}</div>
+        </div>
+      </CardContent>
+    </Paper>
+  </Grid>
+);
 
 export default withStyles(style)(DataCard);

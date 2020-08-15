@@ -1,15 +1,10 @@
 import axios from 'axios';
-import { data } from 'autoprefixer';
 
 const URL = 'https://disease.sh/v3/covid-19/all';
 
-export const fetchGlobalData = () => {
-  return axios.get(URL);
-};
-
-export const fetchGlobalDayBeforeData = () => {
-  return axios.get('https://disease.sh/v3/covid-19/historical/all?lastdays=1');
-};
+export const fetchGlobalData = () => axios.get(URL);
+export const fetchGlobalDayBeforeData = () =>
+  axios.get('https://disease.sh/v3/covid-19/historical/all?lastdays=1');
 
 export const fetchDailySummary = async (country = null) => {
   let URL = 'https://disease.sh/v3/covid-19/historical/all?lastdays=all';

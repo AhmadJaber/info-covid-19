@@ -9,11 +9,10 @@ import {
 } from '@material-ui/core';
 import { fetchCountryInfo } from '../../api';
 
-import './DataTable.css';
 import DataTableHead from '../Tablehead/TableHead.component.jsx';
 import DataTableBody from '../TableBody/TableBody.component.jsx';
 import FilterField from '../FilterField/FilterField.component.jsx';
-import TableLogo from '../../assets/globav2.svg';
+import { ReactComponent as TableLogo } from '../../assets/globav2.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,9 +57,7 @@ const DataTable = () => {
       const countryData = await fetchCountryInfo();
       const sortedCountryData = countryData
         .sort((a, b) => b.cases - a.cases)
-        .map((country, index) => {
-          return { ...country, countryRank: index + 1 };
-        });
+        .map((country, index) => ({ ...country, countryRank: index + 1 }));
       setCountryDataRows(sortedCountryData);
     };
 
@@ -80,9 +77,9 @@ const DataTable = () => {
     setFilter(e.target.value);
   };
 
-  const filteredCountryDataRows = countryDataRows.filter((row) => {
-    return row.country.toLowerCase().includes(filter);
-  });
+  const filteredCountryDataRows = countryDataRows.filter((row) =>
+    row.country.toLowerCase().includes(filter)
+  );
 
   return (
     <div className={classes.wrapper}>
@@ -90,16 +87,16 @@ const DataTable = () => {
         <div>
           <TableLogo className={classes.logo} />
         </div>
-        <Typography component='h1' className={classes.title}>
+        <Typography component="h1" className={classes.title}>
           Country Breakdown
         </Typography>
       </div>
 
       <FilterField handleChange={handleFieldChange} />
 
-      <Paper variant='outlined' className={classes.root}>
+      <Paper variant="outlined" className={classes.root}>
         <TableContainer>
-          <Table className='table' aria-label='customized table'>
+          <Table className="table" aria-label="customized table">
             <DataTableHead />
             <DataTableBody
               countryDataRows={filteredCountryDataRows}
@@ -110,7 +107,7 @@ const DataTable = () => {
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[10, 20]}
-          component='div'
+          component="div"
           count={filteredCountryDataRows.length}
           rowsPerPage={rowsPerPage}
           page={page}

@@ -20,15 +20,15 @@ const App = () => {
   return (
     <Router>
       <ThemeProvider theme={appliedTheme}>
-        <div className='App App__padding-vertical'>
-          <div className='App__container'>
+        <div className="App App__padding-vertical">
+          <div className="App__container">
             <CssBaseline />
             <Header />
 
             <Suspense fallback={<Skeleton />}>
               <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/overtime' component={Overtime} />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/overtime" component={Overtime} />
               </Switch>
             </Suspense>
             <Footer />

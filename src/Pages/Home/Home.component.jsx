@@ -9,17 +9,15 @@ const DataTable = lazy(() =>
 );
 const Chart = lazy(() => import('../../components/Chart/Chart.component.jsx'));
 
-const Home = () => {
-  return (
-    <div className='homepage'>
-      <CardList />
+const Home = () => (
+  <div className="homepage">
+    <CardList />
 
-      <Suspense fallback={<Skeleton />}>
-        <DataTable />
-        <Chart />
-      </Suspense>
-    </div>
-  );
-};
+    <Suspense fallback={<Skeleton />}>
+      <DataTable />
+      <Chart />
+    </Suspense>
+  </div>
+);
 
 export default Home;

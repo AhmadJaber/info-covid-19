@@ -1,5 +1,4 @@
 import React from 'react';
-import './Overtime.css';
 
 import Papa from 'papaparse';
 import axios from 'axios';
@@ -12,6 +11,12 @@ import DateSlider from '../../components/DateSlider/DateSlider.component.jsx';
 import DataSelector from '../../components/DataSelector/DataSelector.component.jsx';
 
 class Overtime extends React.Component {
+  static pullAndParseUrl(url) {
+    return axios
+      .get(url)
+      .then((response) => Papa.parse(response.data, { header: true }));
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -47,12 +52,6 @@ class Overtime extends React.Component {
     });
   }
 
-  static pullAndParseUrl(url) {
-    return axios
-      .get(url)
-      .then((response) => Papa.parse(response.data, { header: true }));
-  }
-
   handleDateChange(selectedDate) {
     this.setState({ date: selectedDate });
   }
@@ -68,12 +67,13 @@ class Overtime extends React.Component {
   toggleDeathData() {
     this.setState({ deathOn: !this.state.deathOn });
   }
+
   render() {
     return (
-      <div className='overtime'>
-        <Grid container justify='center' alignItems='center' spacing={3}>
+      <div className="overtime">
+        <Grid container justify="center" alignItems="center" spacing={3}>
           <Grid item xs={10} sm={8}>
-            <Typography id='title' variant='h4' className='overtime__title'>
+            <Typography id="title" variant="h4" className="overtime__title">
               Visualizing COVID-19 Over Time
             </Typography>
           </Grid>
@@ -103,7 +103,7 @@ class Overtime extends React.Component {
             />
           </Grid>
           <Grid item xs={8}>
-            <Typography id='title' variant='caption'>
+            <Typography id="title" variant="caption">
               This is a depiction of the spread of COVID-19 over time. We rely
               on the Johns Hopkins CSSE Data Repository, which is updated once a
               day at around 23:59 UTC. For that reason, the most recent data our

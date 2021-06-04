@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { themeDark, themeLight } from './utils/RootStyles';
 
 import { ThemeContext } from './context/ThemeContext';
-import { Header, Footer, Skeleton } from './components';
+import { Header, Skeleton } from './components';
 
 const Home = lazy(() => import('./Pages/Home/Home.component.jsx'));
 const Overtime = lazy(() => import('./Pages/Overtime/Overtime.component.jsx'));
@@ -31,7 +31,7 @@ const App = () => {
                 <Route exact path="/overtime" component={Overtime} />
               </Switch>
             </Suspense>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       </ThemeProvider>

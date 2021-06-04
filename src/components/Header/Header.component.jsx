@@ -6,7 +6,7 @@ import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
 import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
 
 import { ThemeContext } from '../../context/ThemeContext';
-import HeaderLink from '../HeaderLink/HeaderLink.component.jsx';
+// import HeaderLink from '../HeaderLink/HeaderLink.component.jsx';
 import LinkButton from '../LinkButton/LinkButton.component.jsx';
 import { ReactComponent as Logo } from '../../assets/coronavirus.svg';
 
@@ -87,7 +87,7 @@ const Header = ({ location }) => {
           </Typography>
         </div>
 
-        <HeaderLink />
+        {/* <HeaderLink /> */}
       </div>
     </header>
   );
